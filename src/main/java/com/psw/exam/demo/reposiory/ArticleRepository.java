@@ -1,70 +1,38 @@
 package com.psw.exam.demo.reposiory;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.psw.exam.demo.vo.Article;
 
-@Component
-public class ArticleRepository {
-
-	private List<Article> articles;
-	private int articleLastId;
+@Mapper
+public interface ArticleRepository {
 	
-	public ArticleRepository() {
-		articleLastId = 0;
-		articles = new ArrayList<>();
-	}
+	// INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = ?, `body` = ?;
+	@Insert("INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = #{title}, `body` = #{body}")
+	public void writeArticle(@Param("title") String title, @Param("body") String body);
 	
-	public void makeTestData() {
-		for (int i = 1; i <= 10; i++) {
-			String title = "제목" + i;
-			String body = "내용" + i;
-			
-			writeArticle(title, body);
-		}
-	}
-
-	public List<Article> getArticles() {		
-		return articles;
-	}
-
-	public Article writeArticle(String title, String body) {
-		int id = articleLastId + 1;
-		Article article = new Article(id, title, body);
-		
-		articles.add(article);
-		articleLastId = id;
-		
-		return article;
-	}
-
-	public Article getArticle(int id) {
-		for( Article article : articles) {
-			if( article.getId() == id) {
-				return article;
-			}
-		}
-		
-		return null;
-	}
-
-	public void deleteArticle(int id) {
-		Article article = getArticle(id);
-		
-		articles.remove(article);
-		
-	}
-
-	public void modifyArticle(int id, String title, String body) {
-		Article article = getArticle(id);
-		
-		article.setTitle(title);
-		article.setBody(body);
-		
-	}
+	// SELECT * FROM article ORDER BY id DESC;
+	@Select("SELECT * FROM article ORDER BY id DESC")
+	public List<Article> getArticles();
+	
+	@Select("SELECT * FROM article WHERE id = #{id}")
+	public Article getArticle(@Param("id") int id);
+	
+	// DELETE FROM article WHERE id = ?
+	@Delete("delete from article where id = #{id}")
+	public void deleteArticle(@Param("id") int id);
+	
+	// UPDATE article SET title = ?, `body` = ?, updateDate = NOW() WHERE id = ?;
+	@Update("UPDATE article SET title = #{title}, `body` = #{body}, updateDate = NOW(), WHERE id = #{id}")
+	public void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
+	
 
 	
 
