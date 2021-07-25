@@ -33,6 +33,8 @@ public interface ArticleRepository {
 	@Update("UPDATE article SET title = #{title}, `body` = #{body}, updateDate = NOW(), WHERE id = #{id}")
 	public void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
 	
+	@Select("SELECT LAST_INSERT_ID()")
+	public int getLastInsertId();
 
 	
 
