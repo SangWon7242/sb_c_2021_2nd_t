@@ -36,3 +36,5 @@ SET regDate = NOW(),
 updateDate = NOW(),
 title = '제목4',
 `body` = '내용4';
+
+SELECT LAST_INSERT_ID();

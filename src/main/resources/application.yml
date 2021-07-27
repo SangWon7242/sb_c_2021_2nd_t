@@ -8,4 +8,4 @@ spring:
     username: sbsst
     password: sbs123414  
 mybatis:
-  type-aliases-package: com.sbs.exam.demo.vo 
+  type-aliases-package: com.psw.exam.demo.vo 
