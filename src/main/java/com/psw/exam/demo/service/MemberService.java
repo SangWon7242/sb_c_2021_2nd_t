@@ -13,12 +13,21 @@ public class MemberService {
 	
 	public int join(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email) {
+		
+		Member oldmember = getMemberByLoginId(loginId);
+		
+		if(oldmember != null) {
+			return -1;
+		}
+		
 		memberRepository.getMember(loginId, loginPw, name, nickname, cellphoneNo, email);
-		
-		
 		return memberRepository.getLastInsertId();
 	}
 	
+	private Member getMemberByLoginId(String loginId) {
+		return memberRepository.getMemberById(loginId);
+	}
+
 	public Member getMemberById(int id) {
 		return memberRepository.getMemberById(id);
 	}
