@@ -13,7 +13,7 @@ public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
 	
-	public ResultData join(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
+	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email) {
 		
 		// 로그인아이디 중복체크

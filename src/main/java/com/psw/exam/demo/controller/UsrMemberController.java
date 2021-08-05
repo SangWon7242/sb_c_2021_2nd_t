@@ -19,7 +19,7 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public ResultData doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
+	public ResultData<Member> doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email) {
 		
 		// Ut.empty 함수는 입력 값이 비어있는지 체크하는 함수
@@ -47,12 +47,12 @@ public class UsrMemberController {
 			return ResultData.from("F-6", "email(을)를 입력해주세요.");
 		}	
 		
-		ResultData joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
+		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
 		// 성공하면 1 이상의 숫자, 실패하면 -1이 리턴
 		
 		
 		if( joinRd.isFail()) {
-			return joinRd;
+			return (ResultData)joinRd;
 		}
 		
 		Member member = memberService.getMemberById((int)joinRd.getData1());
