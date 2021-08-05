@@ -3,9 +3,6 @@ package com.psw.exam.demo.vo;
 import lombok.Getter;
 
 public class ResultData {
-	// S-(성공)
-	// F-(실패)
-	
 	@Getter
 	private String resultCode;
 	@Getter
@@ -23,6 +20,7 @@ public class ResultData {
 	
 	public static ResultData from(String resultCode, String msg, Object data1) {
 		ResultData rd = new ResultData();
+		rd.resultCode = resultCode;
 		rd.msg = msg;
 		rd.data1 = data1;
 		
@@ -35,6 +33,10 @@ public class ResultData {
 	
 	public boolean isFail() {
 		return isSuccess() == false;
+	}
+
+	public static ResultData newData(ResultData joinRd, Object newData) {
+		return from(joinRd.getResultCode(), joinRd.getMsg(), newData);
 	}
 	
 	
