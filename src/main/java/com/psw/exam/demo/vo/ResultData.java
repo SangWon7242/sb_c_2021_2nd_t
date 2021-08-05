@@ -13,6 +13,10 @@ public class ResultData {
 	@Getter
 	private Object data1;
 	
+	private ResultData() {
+
+	}
+	
 	public static ResultData from(String resultCode, String msg) {
 		return from(resultCode, msg, null);
 	}
