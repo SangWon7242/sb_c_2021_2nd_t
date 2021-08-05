@@ -47,6 +47,7 @@ public class UsrMemberController {
 		int id = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
 		// 성공하면 1 이상의 숫자, 실패하면 -1이 리턴
 		
+		
 		if( id == -1) {
 			return Ut.f("해당 로그인아이디(%s)는 이미 사용중입니다.", loginId);
 		}
