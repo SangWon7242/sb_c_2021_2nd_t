@@ -19,6 +19,7 @@ public class UsrMemberController {
 	public Object doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email) {
 		
+		// Ut.empty 함수는 입력 값이 비어있는지 체크하는 함수
 		if(Ut.empty(loginId)) {
 			return "loginId(을)를 입력해주세요.";
 		}
@@ -44,9 +45,14 @@ public class UsrMemberController {
 		}
 		
 		int id = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
+		// 성공하면 1 이상의 숫자, 실패하면 -1이 리턴
 		
 		if( id == -1) {
-			return "해당 로그인아이디는 이미 사용중입니다.";
+			return Ut.f("해당 로그인아이디(%s)는 이미 사용중입니다.", loginId);
+		}
+		
+		if( id == -2) {
+			return Ut.f("해당 이름(%s)과 이메일(%s)는 이미 사용중입니다.", name, email);
 		}
 		
 		Member member = memberService.getMemberById(id);

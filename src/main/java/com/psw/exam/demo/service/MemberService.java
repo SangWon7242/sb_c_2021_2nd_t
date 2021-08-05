@@ -14,22 +14,36 @@ public class MemberService {
 	public int join(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email) {
 		
-		Member oldmember = getMemberByLoginId(loginId);
+		// 로그인아이디 중복체크
+		Member oldMember = getMemberByLoginId(loginId);
 		
-		if(oldmember != null) {
+		if(oldMember != null) {
 			return -1;
+		}
+		
+		// 이름, 이메일 중복체크
+		oldMember = getMemberByNameAndEmail(name, email);
+		
+		if(oldMember != null) {
+			return -2;
 		}
 		
 		memberRepository.getMember(loginId, loginPw, name, nickname, cellphoneNo, email);
 		return memberRepository.getLastInsertId();
 	}
 	
-	private Member getMemberByLoginId(String loginId) {
-		return memberRepository.getMemberById(loginId);
-	}
-
 	public Member getMemberById(int id) {
 		return memberRepository.getMemberById(id);
+	}
+	
+	// lgoinId를 repository에 요청
+	private Member getMemberByLoginId(String loginId) {
+		return memberRepository.getMemberByLoginId(loginId);
+	}
+	
+	// name, email을 repository에 요청
+	private Member getMemberByNameAndEmail(String name, String email) {
+		return memberRepository.getMemberByNameAndEmail(name, email);
 	}
 
 }
