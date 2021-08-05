@@ -114,7 +114,6 @@ public class UsrMemberController {
 			return ResultData.from("S-1", "이미 로그아웃 상태입니다.");
 		}
 		
-		
 		httpSession.removeAttribute("loginedMemberId");
 		
 		return ResultData.from("S-2", "로그아웃 되었습니다.");
