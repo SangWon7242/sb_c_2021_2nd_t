@@ -41,7 +41,7 @@ public class MemberService {
 	}
 	
 	// lgoinId를 repository에 요청
-	private Member getMemberByLoginId(String loginId) {
+	public Member getMemberByLoginId(String loginId) {
 		return memberRepository.getMemberByLoginId(loginId);
 	}
 	
