@@ -104,7 +104,21 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
-	public ResultData<Integer> doModify(int id, String title, String body) {
+	public ResultData<Integer> doModify(HttpSession httpSession, int id, String title, String body) {
+		boolean isLogined = false;
+		int loginedMemberId = 0; // 로그인 안한 상태를 0으로 둠
+
+		// null이 아니라면 로그인한 상태
+		if (httpSession.getAttribute("loginedMemberId") != null) {
+			isLogined = true;
+			loginedMemberId = (int)httpSession.getAttribute("loginedMemberId");
+		}
+		
+		if( isLogined == false) {
+			return ResultData.from("F-A", "로그인 후 이용해주세요.");
+		}
+		
+		
 		Article article = articleService.getArticle(id);
 
 		if (article == null) {

@@ -63,7 +63,7 @@ public class UsrMemberController {
 	
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
-	public ResultData doLogin(HttpSession httpSession, String loginId, String loginPw) {
+	public ResultData<Member> doLogin(HttpSession httpSession, String loginId, String loginPw) {
 		boolean isLogined = false;
 		
 		// null이 아니라면 로그인한 상태
