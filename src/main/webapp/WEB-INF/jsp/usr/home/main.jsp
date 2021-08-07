@@ -5,7 +5,12 @@
 <c:set var="pageTitle" value="메인"/>    
 <%@ include file="../common/head.jspf" %>    
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci inventore saepe molestias possimus tempora explicabo placeat.
-Animi maxime blanditiis quidem nam cum id fugit voluptatem perferendis unde accusamus iure ex!
+<section class="mt-5">
+  <div class="container mx-auto px-3">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci inventore saepe molestias possimus tempora explicabo placeat.
+    Animi maxime blanditiis quidem nam cum id fugit voluptatem perferendis unde accusamus iure ex!
+  </div>
+</section>
+
 
 <%@ include file="../common/foot.jspf" %>  
