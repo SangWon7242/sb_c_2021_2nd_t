@@ -24,6 +24,7 @@ public class ResultData<DT> {
 		ResultData<DT> rd = new ResultData<DT>();
 		rd.resultCode = resultCode;
 		rd.msg = msg;
+		rd.data1Name = data1Name;
 		rd.data1 = data1;
 		
 		return rd;
