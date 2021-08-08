@@ -18,7 +18,7 @@ public class ArticleService {
 	}
 
 	public List<Article> getArticles() {
-		return articleRepository.getArticles();
+		return articleRepository.getForPrintArticles();
 	}
 
 	public ResultData<Integer> writeArticle(int memberId, String title, String body) {
@@ -29,7 +29,7 @@ public class ArticleService {
 	}
 
 	public Article getArticle(int id) {
-		return articleRepository.getArticle(id);
+		return articleRepository.getForPrintArticle(id);
 	}
 
 	public void deleteArticle(int id) {
