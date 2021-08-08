@@ -11,13 +11,6 @@
 		`body` = #{body}
 	</insert>
 
-	<select id="getArticles" resultType="Article">
-		SELECT *
-		FROM article
-		ORDER BY
-		id DESC
-	</select>
-
 	<select id="getArticle" resultType="Article">
 		SELECT *
 		FROM article
