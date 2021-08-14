@@ -33,8 +33,7 @@ build/
 .vscode/
 
 ## 커스텀
-bin/ 
 bin/
 
 LOG_PATH_IS_UNDEFINED/
-log/ 
+log/
