@@ -1,4 +1,4 @@
-package com.psw.exam.demo;
+package com.psw.exam.demo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,8 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 	// beforeActionInterceptor 인터셉터 불러오기
 	@Autowired
 	BeforeActionInterceptor beforeActionInterceptor;
-
+	
+	// needLoginInterceptor 인터셉터 불러오기
 	@Autowired
 	NeedLoginInterceptor needLoginInterceptor;
 
@@ -23,11 +24,12 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 		registry.addInterceptor(beforeActionInterceptor).addPathPatterns("/**").excludePathPatterns("/resource/**")
 				.excludePathPatterns("/error");
 
-		registry.addInterceptor(needLoginInterceptor).addPathPatterns("/usr/**")
-				.excludePathPatterns("/usr/article/write")
-				.excludePathPatterns("/usr/article/doWrite")
-				.excludePathPatterns("/usr/article/modify")
-				.excludePathPatterns("/usr/article/doModify")
+		registry.addInterceptor(needLoginInterceptor)
+				.addPathPatterns("/usr/article/write")
+				.addPathPatterns("/usr/article/doWrite")
+				.addPathPatterns("/usr/article/doDelete")
+				.addPathPatterns("/usr/article/modify")
+				.addPathPatterns("/usr/article/doModify")
 				.excludePathPatterns("/error");
 	}
 
