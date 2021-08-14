@@ -29,8 +29,8 @@
             <tr>
               <th>로그인</th>
               <td>
-                 <input class="cursor: pointer" type="submit" class="horver-cusrsors" value="로그인" />
-                 <button type="button" onclick="history.back();">뒤로가기</button>
+                 <input class="hover:underline" style="cursor: pointer" type="submit"  value="로그인" />
+                 <button class="hover:underline" type="button" onclick="history.back();">뒤로가기</button>
               </td>
             </tr> 
         </tbody>
