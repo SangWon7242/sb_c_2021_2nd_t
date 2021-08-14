@@ -29,23 +29,13 @@
             <tr>
               <th>로그인</th>
               <td>
-                 <input type="submit" value="로그인" />
+                 <input class="cursor: pointer" type="submit" class="horver-cusrsors" value="로그인" />
                  <button type="button" onclick="history.back();">뒤로가기</button>
               </td>
             </tr> 
         </tbody>
       </table> 
-    </form>
-    
-    <div class="btns">
-      <button class="btn-text-link" type="button" onclick="history.back();">뒤로가기</button>
-      <a class="btn-text-link" href="../article//modify?id?=${article.id}">게시물 수정</a>
-      <c:if test="${article.extra__actorCanDelete}">
-        <a class="btn-text-link" onclick="if (confirm('정말 삭제하시겠습니까?') == flase) return false;" href="../article/doDelete?id=${article.id}">게시물 삭제</a>
-      </c:if>
-      
-    </div>
-    
+    </form>    
   </div>
 </section>   
 
