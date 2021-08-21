@@ -37,11 +37,10 @@
             </tr>
           </c:forEach>
         </tbody>
-      </table> 
+      </table>  
     </div>
     
-      <div class="btns">
-        <a class="btn-text-link" href="../article/write?title=${article.title}&body=${article.body}">게시물 작성</a>            
+      <div class="btns">            
       </div>
   </div>
 </section>   
