@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.psw.exam.demo.service.ArticleService;
@@ -21,7 +22,6 @@ public class UsrArticleController {
 	private BoardService boardService;
 	private Rq rq;
 
-	
 	public UsrArticleController(ArticleService articleService, BoardService boardService, Rq rq) {
 		this.articleService = articleService;
 		this.boardService = boardService;
@@ -30,17 +30,16 @@ public class UsrArticleController {
 	}
 
 	@RequestMapping("/usr/article/list")
-	public String showList(Model model, int boardId) {
+	public String showList(Model model,  @RequestParam(defaultValue = "1") int boardId, @RequestParam(defaultValue = "1") int page) {
 		Board board = boardService.getBoardById(boardId);
-		
-		
+			
 		if(board == null) {
 			return rq.historyBackJsOnView(Ut.f("%d번 게시판은 존재하지 않습니다.", boardId));
 		}
 		int articlesCount = articleService.getArticlesCount(boardId);
 		
-		
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId);
+		int itemsCountInAPage = 10;
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId, itemsCountInAPage, page);
 		
 		model.addAttribute("board", board);
 		model.addAttribute("articlesCount", articlesCount);

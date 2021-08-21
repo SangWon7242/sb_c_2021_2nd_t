@@ -17,7 +17,11 @@ public class ArticleService {
 		this.articleRepository = articleRepository;
 	}
 
-	public List<Article> getForPrintArticles(int actorId, int boardId) {
+	public List<Article> getForPrintArticles(int actorId, int boardId, int itemsCountInAPage, int page) {
+		
+		int limitStart = (page - 1) * itemsCountInAPage;
+		int limitTake = itemsCountInAPage;
+		
 		List<Article> articles = articleRepository.getForPrintArticles(boardId);
 		
 		for( Article article : articles ) {
@@ -91,7 +95,7 @@ public class ArticleService {
 			return ResultData.from("F-2", "권한이 없습니다.");
 		}
 		
-		return ResultData.from("S-1", "게시물 수정 가능합니다.");
+		return ResultData.from("S-1", "게시물 삭제가 가능합니다.");
 	}
 
 	public int getArticlesCount(int boardId) {
