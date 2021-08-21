@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.psw.exam.demo.service.MemberService;
 import com.psw.exam.demo.util.Ut;
 
 import lombok.Getter;
@@ -15,27 +16,34 @@ public class Rq {
 	public boolean isLogined;
 	@Getter
 	private int loginedMemberId;
+	@Getter
+	private Member loginedMember;
 	
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	private HttpSession session;
+	
 
-	public Rq(HttpServletRequest req, HttpServletResponse resp) {
+	public Rq(HttpServletRequest req, HttpServletResponse resp, MemberService memberService) {
 		this.req = req;
 		this.resp = resp;	
 		
-		this.session = req.getSession();	
+		this.session = req.getSession();
+		
 		boolean isLogined = false;
 		int loginedMemberId = 0; // 로그인 안한 상태를 0으로 둠
+		Member loginedMember = null;
 
 		// null이 아니라면 로그인한 상태
 		if (session.getAttribute("loginedMemberId") != null) {
 			isLogined = true;
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
+			loginedMember = memberService.getMemberById(loginedMemberId);
 		}
 		
 		this.isLogined = isLogined;
-		this.loginedMemberId = loginedMemberId;	
+		this.loginedMemberId = loginedMemberId;
+		this.loginedMember = loginedMember;
 	}
 
 	public void printHisoryBackJs(String msg) {
