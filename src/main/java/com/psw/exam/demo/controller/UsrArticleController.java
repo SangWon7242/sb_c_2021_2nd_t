@@ -4,29 +4,38 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.psw.exam.demo.service.ArticleService;
+import com.psw.exam.demo.service.BoardService;
 import com.psw.exam.demo.util.Ut;
 import com.psw.exam.demo.vo.Article;
+import com.psw.exam.demo.vo.Board;
 import com.psw.exam.demo.vo.ResultData;
 import com.psw.exam.demo.vo.Rq;
 
 @Controller
 public class UsrArticleController {
-	@Autowired
 	private ArticleService articleService;
+	private BoardService boardService;
+	
+	public UsrArticleController(ArticleService articleService, BoardService boardService) {
+		this.articleService = articleService;
+		this.boardService = boardService;
+	}
 
 	@RequestMapping("/usr/article/list")
-	public String showList(HttpServletRequest req, Model model) {
+	public String showList(HttpServletRequest req, Model model, int boardId) {
 		Rq rq = (Rq) req.getAttribute("rq");
+		
+		Board board = boardService.getBoardById(boardId);	
 		
 		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId());
 		
+		model.addAttribute("board", board);
 		model.addAttribute("articles", articles);
 		
 		return "usr/article/list";

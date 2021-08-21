@@ -106,14 +106,6 @@ WHERE memberId = 0;
 
 SELECT LAST_INSERT_ID();
 
-SELECT A.*,
-M.nickname AS extra__writerName
-FROM article AS A
-INNER JOIN MEMBER AS M
-ON A.memberId = M.id
-WHERE 1
-AND A.id
-
 # 게시판 테이블 생성
 CREATE TABLE board (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -136,7 +128,7 @@ INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
 `code` = 'free1',
-`name` = '자유게시판';
+`name` = '자유';
 
 # 게시판 테이블에 boardId 칼럼 추가
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER memberId;
