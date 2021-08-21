@@ -6,6 +6,9 @@
 
 <section class="mt-5">
   <div class="container mx-auto px-3">
+    <div>
+      게시물 개수 : ${articlesCount}개</div>
+    </div>
     <div class="table-box-type-1">
        <table>
         <colgroup>
@@ -18,7 +21,7 @@
         <thead>
           <tr>
             <th>번호</th>
-            <th>작성날짜</th>
+            <th>작성날짜</th> 
             <th>수정날짜</th>
             <th>작성자</th>
             <th>제목</th>
