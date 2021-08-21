@@ -17,60 +17,58 @@ import lombok.Getter;
 
 @Component
 @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class Rq {	
+public class Rq {
 	@Getter
-	public boolean isLogined;
+	private boolean isLogined;
 	@Getter
 	private int loginedMemberId;
 	@Getter
 	private Member loginedMember;
-	
+
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	private HttpSession session;
-	
+
 	public Rq(HttpServletRequest req, HttpServletResponse resp, MemberService memberService) {
 		this.req = req;
-		this.resp = resp;	
-		
+		this.resp = resp;
+
 		this.session = req.getSession();
-		
+
 		boolean isLogined = false;
-		int loginedMemberId = 0; // 로그인 안한 상태를 0으로 둠
+		int loginedMemberId = 0;
 		Member loginedMember = null;
 
-		// null이 아니라면 로그인한 상태
 		if (session.getAttribute("loginedMemberId") != null) {
 			isLogined = true;
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
 			loginedMember = memberService.getMemberById(loginedMemberId);
 		}
-		
+
 		this.isLogined = isLogined;
 		this.loginedMemberId = loginedMemberId;
 		this.loginedMember = loginedMember;
+
+		this.req.setAttribute("rq", this);
 	}
 
-	public void printHisoryBackJs(String msg) {
+	public void printHistoryBackJs(String msg) {
 		resp.setContentType("text/html; charset=UTF-8");
-		
 		print(Ut.jsHistoryBack(msg));
 	}
 
-
-	private void print(String str) {
+	public void print(String str) {
 		try {
 			resp.getWriter().append(str);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
-	
-	private void println(String str) {
+
+	public void println(String str) {
 		print(str + "\n");
-		
 	}
-	
+
 	public void login(Member member) {
 		session.setAttribute("loginedMemberId", member.getId());
 	}
@@ -85,11 +83,18 @@ public class Rq {
 		return "common/js";
 	}
 
-	public String jsHistoryBack(String msg) {	
+	public String jsHistoryBack(String msg) {
 		return Ut.jsHistoryBack(msg);
 	}
 
 	public String jsReplace(String msg, String uri) {
 		return Ut.jsReplace(msg, uri);
+	}
+
+	// 이 메서드는 Rq 객체가 자연스럽게 생성되도록 유도하는 역할을 한다.
+	// 지우면 안되고,
+	// 편의를 위해 BeforeActionInterceptor 에서 꼭 호출해줘야 한다.
+	public void initOnBeforeActionInterceptor() {
+
 	}
 }

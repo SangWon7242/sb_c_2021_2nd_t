@@ -2,8 +2,6 @@ package com.psw.exam.demo.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +30,7 @@ public class UsrArticleController {
 	}
 
 	@RequestMapping("/usr/article/list")
-	public String showList(Model model, int boardId, int page) {
+	public String showList(Model model, int boardId) {
 		Board board = boardService.getBoardById(boardId);
 		
 		
@@ -40,6 +38,8 @@ public class UsrArticleController {
 			return rq.historyBackJsOnView(Ut.f("%d번 게시판은 존재하지 않습니다.", boardId));
 		}
 		int articlesCount = articleService.getArticlesCount(boardId);
+		
+		
 		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId);
 		
 		model.addAttribute("board", board);
@@ -96,7 +96,7 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
-	public String doAdd(String title, String body, String replaceUri) {
+	public String doAdd(int boardId, String title, String body, String replaceUri) {
 		if (Ut.empty(title)) {
 			return rq.jsHistoryBack("title(을)를 입력해주세요.");
 		}
@@ -105,7 +105,7 @@ public class UsrArticleController {
 			return rq.jsHistoryBack("body(을)를 입력해주세요.");
 		}
 
-		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), title, body);
+		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), boardId, title, body);
 		int id = writeArticleRd.getData1();
 		
 		if (Ut.empty(replaceUri)) {
