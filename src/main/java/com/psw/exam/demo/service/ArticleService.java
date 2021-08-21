@@ -22,7 +22,7 @@ public class ArticleService {
 		int limitStart = (page - 1) * itemsCountInAPage;
 		int limitTake = itemsCountInAPage;
 		
-		List<Article> articles = articleRepository.getForPrintArticles(boardId);
+		List<Article> articles = articleRepository.getArticles(boardId, limitStart, limitTake);
 		
 		for( Article article : articles ) {
 			updateForPrintData(actorId, article);
