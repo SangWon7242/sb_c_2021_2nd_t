@@ -105,3 +105,53 @@ SET memberId = 2
 WHERE memberId = 0;
 
 SELECT LAST_INSERT_ID();
+
+SELECT A.*,
+M.nickname AS extra__writerName
+FROM article AS A
+INNER JOIN MEMBER AS M
+ON A.memberId = M.id
+WHERE 1
+AND A.id
+
+# 게시판 테이블 생성
+CREATE TABLE board (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    `code` CHAR(20) NOT NULL UNIQUE COMMENT 'notice(공지사항),free1(자유게시판),free2(자유게시판2),...',
+    `name` CHAR(20) NOT NULL UNIQUE COMMENT '게시판 이름',
+    delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제여부(0=삭제전,1=삭제)',
+    delDate DATETIME COMMENT '탈퇴날짜'
+);
+
+# 기본 게시판 생성
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'notice',
+`name` = '공지사항';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'free1',
+`name` = '자유게시판';
+
+# 게시판 테이블에 boardId 칼럼 추가
+ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER memberId;
+
+# 1, 2 번 게시물을 공지사항 게시물로 지정
+UPDATE article
+SET boardId = 1
+WHERE id IN (1, 2);
+
+# 3 게시물을 자유게시판 게시물로 지정
+UPDATE article
+SET boardId = 2
+WHERE id IN (3);
+
+SELECT * FROM article;
+
+SELECT * FROM board WHERE id = 1;
+SELECT * FROM board WHERE id = 2;
