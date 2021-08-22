@@ -17,12 +17,12 @@ public class ArticleService {
 		this.articleRepository = articleRepository;
 	}
 
-	public List<Article> getForPrintArticles(int actorId, int boardId, int itemsCountInAPage, int page) {
+	public List<Article> getForPrintArticles(int actorId, int boardId, int itemsCountInAPage, String searchKeywordTypeCode, String searchKeyword, int page) {
 		
 		int limitStart = (page - 1) * itemsCountInAPage;
 		int limitTake = itemsCountInAPage;
 		
-		List<Article> articles = articleRepository.getArticles(boardId, limitStart, limitTake);
+		List<Article> articles = articleRepository.getArticles(boardId, searchKeywordTypeCode, searchKeyword, limitStart, limitTake);
 		
 		for( Article article : articles ) {
 			updateForPrintData(actorId, article);
@@ -99,7 +99,7 @@ public class ArticleService {
 	}
 
 	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword) {
-		return articleRepository.getArticlesCount(boardId);
+		return articleRepository.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
 	}
 
 }
