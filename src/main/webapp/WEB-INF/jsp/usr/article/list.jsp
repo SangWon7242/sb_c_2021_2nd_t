@@ -43,29 +43,48 @@
 
     <div class="page-menu mt-3">
       <div class="btn-group justify-center">
-        <!-- ↓ 현재 페이지 기준으로 좌우 네칸을 보여줌 -->
-        <c:set var="pagesMenuArmLen" value="6" />
-        <c:set var="startPage" value="${page - pagesMenuArmLen >= 1 ? page - pagesMenuArmLen : 1}" />
-        <c:set var="endPage" value="${page + pagesMenuArmLen <= pagesCount ? page + pagesMenuArmLen : pagesCount}" />
+        <c:set var="pageMenuArmLen" value="6" /> <!-- 좌우 6칸을 보여줌 -->
+        <c:set var="startPage" value="${page - pageMenuArmLen >= 1 ? page - pageMenuArmLen : 1}" />
+        <c:set var="endPage" value="${page + pageMenuArmLen <= pagesCount ? page + pageMenuArmLen : pagesCount}" />
         
         <c:if test="${startPage > 1}">
-          <a class="btn btn-sm " href="?page=1&boardId=${boardId}">1</a>
-          <c:if test="${startPage > 2}">  
+          <a class="btn btn-sm" href="?page=1&boardId=${boardId}">1</a>
+          <c:if test="${startPage > 2}">          
+            <a class="btn btn-sm btn-disabled">...</a>
+          </c:if>
+        </c:if>
+        <c:forEach begin="${startPage}" end="${endPage}" var="i">
+          <a class="btn btn-sm ${page == i ? 'btn-active' : ''}" href="?page=${i}&boardId=${boardId}">${i}</a>          
+        </c:forEach>
+        <c:if test="${endPage < pagesCount}">
+          <c:if test="${endPage < pagesCount - 1}">
             <a class="btn btn-sm btn-disabled">...</a>
           </c:if> 
-        </c:if>
-        <c:forEach begin="${startPage}" end="${pagesCount}" var="i">
-          <a class="btn btn-sm ${param.page == i ? 'btn-active' : ''}" href="?page=${i}&boardId=${boardId}">${i}</a>          
-        </c:forEach>
-        <c:if test="${endPage > pagesCount}">
-          <c:if test="${endPage > pagesCount - 1}">
-            <a class="btn btn-sm btn-disabled">...</a>
-          </c:if>  
-          <a class="btn btn-sm " href="?page=${pagesCount}&boardId=${boardId}">${pagesCount}</a>
+          <a class="btn btn-sm" href="?page=${pagesCount}&boardId=${boardId}">${pagesCount}</a>
         </c:if>
       </div>
     </div>
- 
+    
+    <!-- search{s} -->
+
+    <div class="form-group row justify-center">
+      <div class="w100" style="padding-right:10px">
+        <select class="form-control form-control-sm" name="searchType" id="searchType">
+          <option value="title">제목</option>
+          <option value="Content">본문</option>
+          <option value="reg_id">작성자</option>
+        </select>
+      </div>
+
+      <div class="w300" style="padding-right:10px">
+        <input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
+      </div>
+      <div>
+        <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
+      </div>
+    </div>
+    <!-- search{e} -->
+
   </div>
 </section>   
 
