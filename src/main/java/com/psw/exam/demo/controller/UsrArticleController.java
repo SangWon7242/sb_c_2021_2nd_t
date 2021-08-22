@@ -36,12 +36,18 @@ public class UsrArticleController {
 		if(board == null) {
 			return rq.historyBackJsOnView(Ut.f("%d번 게시판은 존재하지 않습니다.", boardId));
 		}
+		
 		int articlesCount = articleService.getArticlesCount(boardId);
 		
-		int itemsCountInAPage = 10;
+		int itemsCountInAPage = 10;		
+		int pagesCount = (int)Math.ceil((double)articlesCount / itemsCountInAPage);
+				
 		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId, itemsCountInAPage, page);
 		
+		model.addAttribute("boardId", boardId);
+		model.addAttribute("page", page);
 		model.addAttribute("board", board);
+		model.addAttribute("pagesCount", pagesCount);
 		model.addAttribute("articlesCount", articlesCount);
 		model.addAttribute("articles", articles);
 		
