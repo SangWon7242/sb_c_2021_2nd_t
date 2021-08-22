@@ -47,6 +47,7 @@
     </div>
     
     <div class="btns">
+      <button type = "button" id = "btnRecommend">좋아요</button>
       <button class="btn btn-link" type="button" onclick="history.back();">뒤로가기</button>
       <c:if test="${article.extra__actorCanModify}">
         <a class="btn btn-link" href="../article/modify?id=${article.id}">게시물 수정</a>

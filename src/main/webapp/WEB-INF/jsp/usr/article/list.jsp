@@ -7,8 +7,13 @@
 <section class="mt-5">
   <div class="container mx-auto px-3">
     <div>게시물 개수 : ${articlesCount}개</div>
-    <div class="table-box-type-1">
-      <table>
+    
+    <!-- search{s} -->
+    
+    <!-- search{e} -->
+    
+    <div class="mt-3">
+      <table class="table table-fixed w-full">
         <colgroup>
           <col width="50" />
           <col width="150" />
@@ -33,14 +38,16 @@
               <td>${article.updateDate.substring(2, 16)}</td>
               <td>${article.extra__writerName}</td>
               <td>
-                <a class="btn-text-link" href="../article/detail?id=${article.id}">${article.title}</a>
+                <a class="btn-text-link block w-full truncate" href="../article/detail?id=${article.id}">${article.title}</a>
               </td>
             </tr>
           </c:forEach>
         </tbody>
       </table>
     </div>
-
+    
+    <!-- pageMenu{s} -->
+    
     <div class="page-menu mt-3">
       <div class="btn-group justify-center">
         <c:set var="pageMenuArmLen" value="6" /> <!-- 좌우 6칸을 보여줌 -->
@@ -69,25 +76,7 @@
       </div>
     </div>
     
-    <!-- search{s} -->
-
-    <div class="form-group row justify-center">
-      <div class="w100" style="padding-right:10px">
-        <select class="form-control form-control-sm" name="searchType" id="searchType">
-          <option value="title">제목</option>
-          <option value="Content">본문</option>
-          <option value="reg_id">작성자</option>
-        </select>
-      </div>
-
-      <div class="w300" style="padding-right:10px">
-        <input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
-      </div>
-      <div>
-        <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
-      </div>
-    </div>
-    <!-- search{e} -->
+    <!-- pageMenu{e} -->
 
   </div>
 </section>   

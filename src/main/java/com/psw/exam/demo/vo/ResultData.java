@@ -34,8 +34,8 @@ public class ResultData<DT> {
 		return isSuccess() == false;
 	}
 
-	public static <DT> ResultData<DT> newData(ResultData oldRd, String data1Name,DT newData) {
-		return from(oldRd.getResultCode(), oldRd.getMsg(), data1Name, newData);
+	public static <DT> ResultData<DT> newData(ResultData oldRd, String data1Name, DT data1) {
+		return from(oldRd.getResultCode(), oldRd.getMsg(), data1Name, data1);
 	}
 	
 	
