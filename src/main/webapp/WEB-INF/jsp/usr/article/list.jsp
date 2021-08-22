@@ -44,24 +44,24 @@
     <div class="page-menu mt-3">
       <div class="btn-group justify-center">
         <!-- ↓ 현재 페이지 기준으로 좌우 네칸을 보여줌 -->
-        <c:set var="pagesMenuArmLen" value="9" />
+        <c:set var="pagesMenuArmLen" value="6" />
         <c:set var="startPage" value="${page - pagesMenuArmLen >= 1 ? page - pagesMenuArmLen : 1}" />
         <c:set var="endPage" value="${page + pagesMenuArmLen <= pagesCount ? page + pagesMenuArmLen : pagesCount}" />
         
         <c:if test="${startPage > 1}">
-          <a class="btn btn-sm " href="?page=1">1</a>
+          <a class="btn btn-sm " href="?page=1&boardId=${boardId}">1</a>
           <c:if test="${startPage > 2}">  
             <a class="btn btn-sm btn-disabled">...</a>
           </c:if> 
         </c:if>
         <c:forEach begin="${startPage}" end="${pagesCount}" var="i">
-          <a class="btn btn-sm ${param.page == i ? 'btn-active' : ''}" href="?page=${i}">${i}</a>          
+          <a class="btn btn-sm ${param.page == i ? 'btn-active' : ''}" href="?page=${i}&boardId=${boardId}">${i}</a>          
         </c:forEach>
         <c:if test="${endPage > pagesCount}">
           <c:if test="${endPage > pagesCount - 1}">
             <a class="btn btn-sm btn-disabled">...</a>
           </c:if>  
-          <a class="btn btn-sm " href="?page=${pagesCount}">${pagesCount}</a>
+          <a class="btn btn-sm " href="?page=${pagesCount}&boardId=${boardId}">${pagesCount}</a>
         </c:if>
       </div>
     </div>
