@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.RequestScope;
 
 import com.psw.exam.demo.service.ArticleService;
 import com.psw.exam.demo.service.BoardService;
@@ -57,18 +58,23 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(Model model, int id) {
-		
-		ResultData<Integer> increaseHitCountRd = articleService.increaseHitCount(id);
-		
-		if(increaseHitCountRd.isFail()) {
-			return rq.historyBackJsOnView(increaseHitCountRd.getMsg());
-		}
-		
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		model.addAttribute("article", article);
 
 		return "usr/article/detail";
+	}
+	
+	@RequestMapping("/usr/article/doIncreaseHitCountRd")
+	@ResponseBody
+	public ResultData<Integer> doIncreaseHitCountRd(int id){
+		ResultData<Integer> increaseHitCountRd = articleService.increaseHitCount(id);
+		
+		if(increaseHitCountRd.isFail()) {
+			return increaseHitCountRd;
+		}
+		
+		return ResultData.newData(increaseHitCountRd, "hitCount", articleService.getArticleHitCount(id));
 	}
 
 	@RequestMapping("/usr/article/getArticle")
