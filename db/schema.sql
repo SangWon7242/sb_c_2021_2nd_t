@@ -153,4 +153,9 @@ select now(), now(), 2, FLOOR(RAND() * 2) + 1, concat('제목_', rand()), CONCAT
 from article;
 */
 
-SELECT COUNT(*) FROM article;
+SELECT * FROM article;
+
+# 게시판 테이블에 hitCount(조회수) 칼럼 추가
+ALTER TABLE article ADD COLUMN hitCount INT(10) UNSIGNED NOT NULL DEFAULT 0;
+
+DESC article;
