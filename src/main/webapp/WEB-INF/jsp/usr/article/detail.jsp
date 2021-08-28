@@ -88,12 +88,7 @@
       </c:if>    
     </div>    
   </div>
-</section>
-
-<!-- 
-<iframe src="" frameborder="0"></iframe>
- -->
-   
+</section>   
 
 
 <%@ include file="../common/foot.jspf"%>
