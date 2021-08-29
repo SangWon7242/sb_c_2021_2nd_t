@@ -65,9 +65,16 @@
             </tr>
             
             <tr>
-              <th>조회수</th> 
+              <th>조회</th> 
               <td>
                 <span class="badge badge-primary article-detail__hit-count">${article.hitCount}</span>              
+              </td>
+            </tr>
+            
+             <tr>
+              <th>추천</th> 
+              <td>
+                <span class="badge badge-primary">${article.extra__goodReactionPoint}</span>              
               </td>
             </tr>
             
@@ -85,8 +92,7 @@
       </table> 
     </div>
     
-    <div class="btns">
-      <button type = "button" id = "btnRecommend">좋아요</button>
+    <div class="btns">    
       <button class="btn btn-link" type="button" onclick="history.back();">뒤로가기</button>
       <c:if test="${article.extra__actorCanModify}">
         <a class="btn btn-link" href="../article/modify?id=${article.id}">게시물 수정</a>
