@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.psw.exam.demo.service.ArticleService;
 import com.psw.exam.demo.service.BoardService;
+import com.psw.exam.demo.service.ReactionPointService;
 import com.psw.exam.demo.util.Ut;
 import com.psw.exam.demo.vo.Article;
 import com.psw.exam.demo.vo.Board;
@@ -20,11 +21,13 @@ import com.psw.exam.demo.vo.Rq;
 public class UsrArticleController {
 	private ArticleService articleService;
 	private BoardService boardService;
+	private ReactionPointService reactionPointService;
 	private Rq rq;
 
-	public UsrArticleController(ArticleService articleService, BoardService boardService, Rq rq) {
+	public UsrArticleController(ArticleService articleService, BoardService boardService, ReactionPointService reactionPointService,Rq rq) {
 		this.articleService = articleService;
 		this.boardService = boardService;	
+		this.reactionPointService = reactionPointService;
 		this.rq = rq;
 
 	}
@@ -62,7 +65,7 @@ public class UsrArticleController {
 		model.addAttribute("article", article);
 		
 		// 할 수 있냐 없냐를 판단하기 위해 boolean 으로 설정
-		boolean actorCanMakeReactionPoint = articleService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), id);
+		boolean actorCanMakeReactionPoint = reactionPointService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), "article", id);
 
 		model.addAttribute("actorCanMakeReactionPoint", actorCanMakeReactionPoint);
 
