@@ -62,6 +62,7 @@ public class UsrArticleController {
 
 		model.addAttribute("article", article);
 		
+		// 할 수 있냐 없냐를 판단하기 위해 boolean 으로 설정
 		boolean actorCanMakeReactionPoint = articleService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), id);
 
 		model.addAttribute("actorCanMakeReactionPoint", actorCanMakeReactionPoint);
