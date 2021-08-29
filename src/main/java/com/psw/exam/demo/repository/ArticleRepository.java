@@ -81,8 +81,8 @@ public interface ArticleRepository {
 			GROUP BY A.id
 			</script>
 			""")
-	public List<Article> getForPrintArticles(int boardId, String searchKeywordTypeCode, String searchKeyword, int limitStart,
-			int limitTake);
+	public List<Article> getForPrintArticles(int boardId, String searchKeywordTypeCode, String searchKeyword,
+			int limitStart, int limitTake);
 
 	public int getLastInsertId();
 
@@ -119,7 +119,7 @@ public interface ArticleRepository {
 			<script>
 			UPDATE article
 			SET hitCount = hitCount + 1
-			WHERE id = ${id}
+			WHERE id = #{id}
 			</script>
 			""")
 	public int increaseHitCount(int id);
@@ -129,9 +129,20 @@ public interface ArticleRepository {
 			<script>
 			SELECT hitCount
 			FROM article
-			WHERE id = ${id}
+			WHERE id = #{id}
 			</script>
 			""")
 	public int getArticleHitCount(int id);
+	
+	@Select("""
+			<script>
+			SELECT IFNULL(SUM(RP.point), 0) AS s
+			FROM reactionPoint AS RP
+			WHERE RP.relTypeCode = 'article'
+			AND RP.relId = #{id}
+			AND RP.memberId = #{memberId}
+			</script>
+			""")
+	public int getSumReactionPointByMemberId(int id, int memberId);
 	
 }
