@@ -79,15 +79,15 @@
                   <span>&nbsp;</span>
                   
                   <c:if test="${actorCanMakeReactionPoint}">
-                    <button class="btn btn-xs btn-primary">
+                    <a href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-xs btn-primary">
                       좋아요
                       👍
-                    </button>
+                    </a>
                     <span>&nbsp;</span>
-                    <button class="btn btn-xs btn-secondary">
+                    <a href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-xs btn-secondary">
                       싫어요
                       👎
-                    </button>
+                    </a>
                   </c:if>                 
                 </div>
               </td>
