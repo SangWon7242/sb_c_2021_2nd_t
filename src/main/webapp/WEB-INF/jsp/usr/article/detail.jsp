@@ -78,20 +78,18 @@
                   <span class="badge badge-primary">${article.goodReactionPoint}</span>
                   <span>&nbsp;</span>
                   
-                  <c:if test="${actorCanMakeReaction}">
-                    <a href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-xs btn-primary">
-                      좋아요
-                      👍
-                    </a>
-                    <span>&nbsp;</span>
-                    <a href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-xs btn-secondary">
-                      싫어요
-                      👎
-                    </a>
-                  </c:if>
+                 <c:if test="${actorCanMakeReaction}">
+                  <a href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-xs btn-primary btn-outline">
+                    좋아요 👍
+                  </a>
+                  <span>&nbsp;</span>
+                  <a href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-xs btn-secondary btn-outline">
+                    싫어요 👎
+                  </a>
+                </c:if>
                   
                   <!-- 좋아요 리액션 -->
-                  <c:if test="${actorCanCancelGoodReaction}">
+                <c:if test="${actorCanCancelGoodReaction}">
                   <a href="/usr/reactionPoint/doCancelGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-xs btn-primary">
                     좋아요 👍
                   </a>

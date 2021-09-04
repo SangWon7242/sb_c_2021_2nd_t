@@ -31,11 +31,11 @@ public class Article {
 	}
 
 	public String getForPrintType2RegDate() {
-		return regDate.substring(2, 16).replace(" ", "<br>");
+		return regDate.substring(2, 16);
 	}
 	
 	public String getForPrintType2UpdateDate() {
-		return updateDate.substring(2, 16).replace(" ", "<br>");
+		return regDate.substring(2, 16);
 	}
 	
 }

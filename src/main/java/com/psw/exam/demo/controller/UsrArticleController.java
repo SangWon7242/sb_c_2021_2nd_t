@@ -64,10 +64,10 @@ public class UsrArticleController {
 
 		model.addAttribute("article", article);
 				
-		ResultData actorCanMakeReactionPointRd = reactionPointService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), "article", id);
+		ResultData actorCanMakeReactionPointRd = reactionPointService.actorCanMakeReactionPoint(rq.getLoginedMemberId(),
+				"article", id);
 
-		model.addAttribute("actorCanMakeReactionPoint", actorCanMakeReactionPointRd.isSuccess());		
-		
+		model.addAttribute("actorCanMakeReaction", actorCanMakeReactionPointRd.isSuccess());		
 		
 		if ( actorCanMakeReactionPointRd.getResultCode().equals("F-2") ) {
 			int sumReactionPointByMemberId = (int)actorCanMakeReactionPointRd.getData1();
