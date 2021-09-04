@@ -63,11 +63,22 @@ public class UsrArticleController {
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		model.addAttribute("article", article);
-		
-		// 할 수 있냐 없냐를 판단하기 위해 boolean 으로 설정
-		boolean actorCanMakeReactionPoint = reactionPointService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), "article", id);
+				
+		ResultData actorCanMakeReactionPointRd = reactionPointService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), "article", id);
 
-		model.addAttribute("actorCanMakeReactionPoint", actorCanMakeReactionPoint);
+		model.addAttribute("actorCanMakeReactionPoint", actorCanMakeReactionPointRd.isSuccess());		
+		
+		
+		if ( actorCanMakeReactionPointRd.getResultCode().equals("F-2") ) {
+			int sumReactionPointByMemberId = (int)actorCanMakeReactionPointRd.getData1();
+
+			if ( sumReactionPointByMemberId > 0 ) {
+				model.addAttribute("actorCanCancelGoodReaction", true);
+			}
+			else {
+				model.addAttribute("actorCanCancelBadReaction", true);
+			}
+		}
 
 		return "usr/article/detail";
 	}
