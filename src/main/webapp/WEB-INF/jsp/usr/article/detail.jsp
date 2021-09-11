@@ -209,7 +209,14 @@
     </c:if>
   </div>
 </section>
-<!-- 댓글 작성 폼 구현 끝 -->   
+<!-- 댓글 작성 폼 구현 끝 -->
+
+<!-- 댓글 리스트 구현 -->
+<section class="mt-5">
+  <div class="container mx-auto px-3">
+    <h1>댓글 리스트(${repliesCount})</h1> 
+  </div>
+</section>  
 
 
 <%@ include file="../common/foot.jspf"%>
