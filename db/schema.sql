@@ -287,3 +287,13 @@ memberId = 1,
 relTypeCode = 'article',
 relId = 1,
 `body` = '댓글 4';
+
+# 댓글에 좋아요 수, 싫어요 수 칼럼 추가
+ALTER TABLE reply
+ADD COLUMN goodReactionPoint INT(10) UNSIGNED NOT NULL DEFAULT 0;
+
+ALTER TABLE reply
+ADD COLUMN badReactionPoint INT(10) UNSIGNED NOT NULL DEFAULT 0;
+
+# 댓글 테이블에 인덱스 걸기(속도를 높여주는 작업)
+ALTER TABLE `reply` ADD INDEX(`relTypeCode`, `relId`);
