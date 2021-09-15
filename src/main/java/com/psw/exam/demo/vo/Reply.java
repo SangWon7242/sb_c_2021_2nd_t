@@ -39,4 +39,9 @@ public class Reply {
 		return regDate.substring(2, 16);
 	}
 	
+	// 댓글 작성시 엔터로 입력한 글 출력
+	public String getForPrintBody() {
+		return body.replaceAll("\n", "<br>");
+	}
+	
 }
