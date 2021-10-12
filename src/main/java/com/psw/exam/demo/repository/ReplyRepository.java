@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.psw.exam.demo.vo.Reply;
 
@@ -62,5 +63,13 @@ public interface ReplyRepository {
 			WHERE id = #{id}
 			""")
 	void deleteReply(int id);
+	
+	@Update("""
+			UPDATE reply
+			SET updateDate = NOW(),
+			`body` = #{body}
+			WHERE id = #{id}
+			""")
+	void modifyReply(int id);
 	
 }
