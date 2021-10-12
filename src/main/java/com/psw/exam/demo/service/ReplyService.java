@@ -41,7 +41,7 @@ public class ReplyService {
 
 		ResultData actorCanDeleteRd = actorCanDelete(actor, reply);
 		reply.setExtra__actorCanDelete(actorCanDeleteRd.isSuccess());
-		
+
 		ResultData actorCanModifyRd = actorCanModify(actor, reply);
 		reply.setExtra__actorCanModify(actorCanModifyRd.isSuccess());
 		
@@ -67,8 +67,8 @@ public class ReplyService {
 		if (reply.getMemberId() != actor.getId()) {
 			return ResultData.from("F-2", "권한이 없습니다.");
 		}
-		
-		return ResultData.from("S-1", "댓글 삭제가 가능합니다.");
+
+		return ResultData.from("S-1", "댓글 수정이 가능합니다.");
 	}
 
 	public Reply getForPrintReply(Member actor, int id) {
