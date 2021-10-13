@@ -42,7 +42,7 @@
             </tr>
             
             <tr>
-             <th>전화번호</th> 
+             <th>휴대전화번호</th> 
              <td>
                 ${rq.loginedMember.cellphoneNo}
              </td>

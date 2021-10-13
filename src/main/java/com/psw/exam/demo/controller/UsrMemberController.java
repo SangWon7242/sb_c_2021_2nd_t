@@ -128,8 +128,12 @@ public class UsrMemberController {
 			return rq.jsHistoryBack("비밀번호가 일치하지 않습니다.");
 		}
 		
-		return rq.jsReplace("", replaceUri);
-		
+		return rq.jsReplace("", replaceUri);	
+	}
+	
+	@RequestMapping("/usr/member/modify")
+	public String showModify(HttpSession httpSession) {
+		return "usr/member/modify";
 	}
 
 }
