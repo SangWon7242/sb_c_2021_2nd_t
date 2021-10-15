@@ -43,7 +43,7 @@
         </li>
         <li>
           <a class="h-full flex px-3 items-center hover:underline" href="/usr/article/write">
-            <span>작성</span>
+            <span>게시물 작성</span>
           </a>
         </li>
         <li>
@@ -60,6 +60,13 @@
         <li>
           <a class="h-full flex px-3 items-center hover:underline" href="/usr/member/login">
             <span>로그인</span>
+          </a>
+        </li>
+        </c:if>
+        <c:if test="${!rq.isLogined()}">        
+        <li>
+          <a class="h-full flex px-3 items-center hover:underline" href="/usr/member/join">
+            <span>회원가입</span>
           </a>
         </li>
         </c:if>

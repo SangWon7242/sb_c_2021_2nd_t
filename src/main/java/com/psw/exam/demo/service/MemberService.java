@@ -81,4 +81,11 @@ public class MemberService {
 		return ResultData.from("S-1", "정상적인 코드입니다.");
 	}
 
+	public ResultData join(int id, String loginId, String loginPw, String name, String nickname,
+			String email, String cellphoneNo) {
+		memberRepository.join(id, loginId, loginPw, name, nickname, email, cellphoneNo);
+
+		return ResultData.from("S-1", "회원가입이 완료되었습니다.");
+	}
+
 }

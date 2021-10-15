@@ -323,3 +323,6 @@ ALTER TABLE `attr` ADD INDEX (`relTypeCode`, `typeCode`, `type2Code`);
 ALTER TABLE `attr` ADD COLUMN `expireDate` DATETIME NULL AFTER `value`;
 
 DESC attr;
+
+# 로그인비번 칼럼의 길이를 100으로 늘림
+ALTER TABLE `member` MODIFY COLUMN loginPw VARCHAR(100) NOT NULL;

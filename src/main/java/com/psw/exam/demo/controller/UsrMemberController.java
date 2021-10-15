@@ -21,47 +21,58 @@ public class UsrMemberController {
 		this.memberService = memberService;
 		this.rq = rq;
 	}
+	
+	@RequestMapping("/usr/member/join")
+	public String showJoin(HttpSession httpSession) {
+		return "usr/member/join";
+	}
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public ResultData<Member> doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
+	public String doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email) {
 		
-		// Ut.empty 함수는 입력 값이 비어있는지 체크하는 함수
+		 Member oldmember = memberService.getMemberByLoginId(loginId);
+		
+		if( oldmember != null) {
+			return rq.jsHistoryBack("해당 아이디는 이미 사용중입니다.");
+		}
+		
 		if(Ut.empty(loginId)) {
-			return ResultData.from("F-1", "loginId(을)를 입력해주세요.");
+			return rq.jsHistoryBack("loginId(을)를 입력해주세요.");
 		}
 		
 		if(Ut.empty(loginPw)) {
-			return ResultData.from("F-2", "loginPw(을)를 입력해주세요.");
+			return rq.jsHistoryBack("loginPw(을)를 입력해주세요.");
 		}
 		
 		if(Ut.empty(name)) {
-			return ResultData.from("F-3", "name(을)를 입력해주세요.");		
+			return rq.jsHistoryBack("name(을)를 입력해주세요.");
 		}
 		
 		if(Ut.empty(nickname)) {
-			return ResultData.from("F-4", "nickname(을)를 입력해주세요.");
-		}
-		
-		if(Ut.empty(cellphoneNo)) {
-			return ResultData.from("F-5", "cellphoneNo(을)를 입력해주세요.");
+			return rq.jsHistoryBack("nickname(을)를 입력해주세요.");
 		}
 		
 		if(Ut.empty(email)) {
-			return ResultData.from("F-6", "email(을)를 입력해주세요.");
-		}	
-		
-		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
-		// 성공하면 1 이상의 숫자, 실패하면 -1이 리턴
-		
-		if( joinRd.isFail()) {
-			return (ResultData)joinRd;
+			return rq.jsHistoryBack("email(을)를 입력해주세요.");
 		}
 		
-		Member member = memberService.getMemberById((int)joinRd.getData1());
+		if(Ut.empty(cellphoneNo)) {
+			return rq.jsHistoryBack("cellphoneNo(을)를 입력해주세요.");
+		}				
+		
+		// ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
+		// 성공하면 1 이상의 숫자, 실패하면 -1이 리턴	
+		
+		//Member member = memberService.getMemberById((int)joinRd.getData1());
+		ResultData joinRd = memberService.join(rq.getLoginedMemberId(), loginId,loginPw, name, nickname, email, cellphoneNo);
 
-		return ResultData.newData(joinRd, "member", member);
+		if( joinRd.isFail()) {
+			return rq.historyBackJsOnView(joinRd.getMsg());
+		}		
+		
+		return rq.jsReplace(joinRd.getMsg(), "/");
 	}
 	
 	@RequestMapping("/usr/member/login")

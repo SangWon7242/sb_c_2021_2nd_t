@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import com.psw.exam.demo.vo.Member;
 
@@ -78,4 +77,35 @@ public interface MemberRepository {
 			</script>
 			""")			
 	public void modify(int id, String loginPw, String name, String nickname, String email, String cellphoneNo);
+
+	@Insert("""
+			<script>
+			INSERT INTO `member`
+			<set>
+				regDate = NOW(),
+				updateDate = NOW(),
+				<if test="loginId != null">
+				loginId = #{loginId},
+				</if>
+				<if test="loginPw != null">
+				loginPw = #{loginPw},
+				</if>
+				<if test="name != null">
+				name = #{name},
+				</if>
+				<if test="nickname != null">
+				nickname = #{nickname},
+				</if>
+				<if test="email != null">
+				email = #{email},
+				</if>
+				<if test="cellphoneNo != null">
+				cellphoneNo = #{cellphoneNo},
+				</if>
+			</set>
+			</script>
+			""")
+	public void join(int id, String loginId, String loginPw, String name, String nickname, String email,
+			String cellphoneNo);
+	
 }
