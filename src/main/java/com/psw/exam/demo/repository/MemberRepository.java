@@ -107,5 +107,8 @@ public interface MemberRepository {
 			""")
 	public void join(int id, String loginId, String loginPw, String name, String nickname, String email,
 			String cellphoneNo);
+
+
+	
 	
 }

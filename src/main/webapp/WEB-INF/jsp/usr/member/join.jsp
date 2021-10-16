@@ -4,6 +4,8 @@
 <c:set var="pageTitle" value="회원가입" />
 <%@ include file="../common/head.jspf"%>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+
 <script>
 	let MemberJoin__submitDone = false;
 
@@ -20,26 +22,28 @@
 
 			return;
 		}		
-
-		form.loginPw.value = form.loginPw.value.trim();
-
-		if (form.loginPw.value.length > 0) {
-			form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
-
-			if (form.loginPwConfirm.value.length == 0) {
-				alert('비밀번호확인을 입력해주세요.')
-				form.loginPwConfirm.focus();
-
-				return;
-			}
-
-			if (form.loginPw.value != form.loginPwConfirm.value) {
-				alert('비밀번호확인이 일치하지 않습니다.');
-				form.loginPwConfirm.focus();
-
-				return;
-			}
-		}
+		
+		form.loginPwInput.value = form.loginPwInput.value.trim();
+		
+	    if ( form.loginPwInput.value.length == 0 ) {
+	        alert('로그인비밀번호을 입력해주세요.');
+	        form.loginPwInput.focus();
+	        return;
+	    }
+	    
+	    form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
+	    
+	    if ( form.loginPwConfirm.value.length == 0 ) {
+	        alert('로그인비밀번호 확인을 입력해주세요.');
+	        form.loginPwConfirm.focus();
+	        return;
+	    }
+	    
+	    if ( form.loginPwInput.value != form.loginPwConfirm.value ) {
+	        alert('로그인비밀번호가 일치하지 않습니다.');
+	        form.loginPwConfirm.focus();
+	        return;
+	    }
 
 		form.name.value = form.name.value.trim();
 
@@ -76,6 +80,10 @@
 
 			return;
 		}
+		
+		form.loginPw.value = sha256(form.loginPwInput.value);
+	    form.loginPwInput.value = '';
+	    form.loginPwConfirm.value = '';
 
 		MemberJoin__submitDone = true;
 		form.submit();
@@ -85,7 +93,8 @@
 <section class="mt-5">
   <div class="container mx-auto px-3">
     <form class="table-box-type-1" method="POST" action="../member/doJoin"
-      onsubmit="MemberJoin__submit(this); return false;">     
+      onsubmit="MemberJoin__submit(this); return false;">
+      <input type="hidden" name="loginPw" />     
       <table>
         <colgroup>
           <col width="200" />
@@ -101,7 +110,7 @@
           <tr>
             <th>로그인 비밀번호</th>
             <td>
-              <input class="input input-bordered" name="loginPw" placeholder="비밀번호를 입력해주세요." type="password" />
+              <input class="input input-bordered" name="loginPwInput" placeholder="비밀번호를 입력해주세요." type="password" />
             </td>
           </tr>
 

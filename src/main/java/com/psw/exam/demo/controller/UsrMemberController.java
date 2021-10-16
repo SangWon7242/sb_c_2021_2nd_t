@@ -30,9 +30,9 @@ public class UsrMemberController {
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
 	public String doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
-			String email) {
+			String email) {		
 		
-		 Member oldmember = memberService.getMemberByLoginId(loginId);
+		Member oldmember = memberService.getMemberByLoginId(loginId);
 		
 		if( oldmember != null) {
 			return rq.jsHistoryBack("해당 아이디는 이미 사용중입니다.");
