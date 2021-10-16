@@ -8,6 +8,7 @@
   <div class="container mx-auto px-3">
     <form class="table-box-type-1" method="POST" action="../member/doCheckPassword">
       <input type="hidden" name="replaceUri" value="${param.replaceUri}"/>
+      <input type="hidden" name="loginPw" />
        <table>
         <colgroup>
           <col width="200"/>
@@ -23,7 +24,7 @@
             <tr>
              <th>로그인 비밀번호</th> 
              <td>
-                <input name="loginPw" class="w-96 input input-bordered" type="password" placeholder="로그인비밀번호" required="required" />
+                <input name="loginPw" class="w-96 input input-bordered" type="password" name="loginPwInput" placeholder="로그인비밀번호" required="required" />
              </td>
             </tr> 
             

@@ -4,6 +4,8 @@
 <c:set var="pageTitle" value="회원정보수정" />
 <%@ include file="../common/head.jspf"%>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+
 <script>
 	let MemberModify__submitDone = false;
 
@@ -12,9 +14,9 @@
 			return;
 		}
 
-		form.loginPw.value = form.loginPw.value.trim();
+		form.loginPwInput.value = form.loginPwInput.value.trim();
 
-		if (form.loginPw.value.length > 0) {
+		if (form.loginPwInput.value.length > 0) {
 			form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
 
 			if (form.loginPwConfirm.value.length == 0) {
@@ -24,7 +26,7 @@
 				return;
 			}
 
-			if (form.loginPw.value != form.loginPwConfirm.value) {
+			if (form.loginPwInput.value != form.loginPwConfirm.value) {
 				alert('비밀번호확인이 일치하지 않습니다.');
 				form.loginPwConfirm.focus();
 
@@ -67,6 +69,12 @@
 
 			return;
 		}
+		
+		if ( form.loginPwInput.value.length > 0 ) {
+	        form.loginPw.value = sha256(form.loginPwInput.value);
+	        form.loginPwInput.value = '';
+	        form.loginPwConfirm.value = '';
+	    }
 
 		MemberModify__submitDone = true;
 		form.submit();
@@ -78,6 +86,7 @@
     <form class="table-box-type-1" method="POST" action="../member/doModify"
       onsubmit="MemberModify__submit(this); return false;">
       <input type="hidden" name="memberModifyAuthKey" value="${param.memberModifyAuthKey}"/>
+      <input type="hidden" name="loginPw" />
       <table>
         <colgroup>
           <col width="200" />
@@ -91,7 +100,7 @@
           <tr>
             <th>새 로그인비밀번호</th>
             <td>
-              <input class="input input-bordered" name="loginPw" placeholder="새 비밀번호를 입력해주세요." type="password" />
+              <input class="input input-bordered" name="loginPwInput" placeholder="새 비밀번호를 입력해주세요." type="password" />
             </td>
           </tr>
 
