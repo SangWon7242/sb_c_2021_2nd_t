@@ -38,39 +38,38 @@
 	}
 </script>
 
-<section class="mt-5">
-  <div class="container mx-auto px-3">
-    <form class="table-box-type-1" method="POST" action="../member/doLogin"
+<section class="section section-login flex-grow flex items-center justify-center">
+  <div class="flex-grow max-w-md px-2 pt-4">
+    <form class="flex flex-col" method="POST" action="../member/doLogin"
       onsubmit="MemberLogin__submitForm(this); return false;">
       <input type="hidden" name="loginPw" />
       <table>
-        <colgroup>
-          <col width="200" />
-        </colgroup>
-        <tbody>
-          <tr>
-            <th>로그인 아이디</th>
-            <td>
-              <input name="loginId" class="w-96 input input-bordered" type="text" placeholder="로그인아이디" />
-            </td>
-          </tr>
-
-          <tr>
-            <th>로그인 비밀번호</th>
-            <td>
-              <input name="loginPwInput" class="w-96 input input-bordered" type="password" 
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">로그인 아이디</span>
+          </label>
+          <input name="loginId" class="input input-bordered" maxlength="20" type="text" placeholder="로그인아이디" />
+        </div>
+        
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">로그인 비밀번호</span>
+          </label>
+          <input name="loginPwInput" class="input input-bordered" maxlength="20" type="password" 
                 placeholder="로그인비밀번호" />
-            </td>
-          </tr>
-
-          <tr>
-            <th>로그인</th>
-            <td>
-              <button type="submit" class="btn btn-primary">로그인</button>
-              <button type="button" class="btn btn-outline btn-secondary" onclick="history.back();">뒤로가기</button>
-            </td>
-          </tr>
-        </tbody>
+        </div>
+        
+        <div class="btns mt-3 flex justify-center px-1">
+          <input class="btn btn-primary w-1/2" type="submit" value="로그인"/>
+          <div class="w-2 flex-shrink-0"></div>
+          <button type="button" class="btn btn-outline btn-secondary w-1/2" onclick="history.back();">뒤로가기</button>
+        </div>
+        
+        <div class="btns mt-3 flex justify-center">
+          <a href="../member/findLoginId" class="btn btn-link">아이디 찾기</a>
+          <a href="../member/findLoginPw" class="btn btn-link">비밀번호 찾기</a>
+        </div>
+        
       </table>
     </form>
   </div>

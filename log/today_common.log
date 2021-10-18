@@ -1,2 +1,4 @@
-2021-10-17 00:00:03 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
-2021-10-17 00:00:03 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool is at sufficient level.
+2021-10-18 10:49:31 [INFO ] c.psw.exam.demo.DemoTest1Application - Starting DemoTest1Application using Java 15.0.2 on DESKTOP-UAETV4U with PID 6116 (C:\work\sts-4.10.0.RELEASE-workspace\sb_c_2021_2nd_t\target\classes started by 박상원 in C:\work\sts-4.10.0.RELEASE-workspace\sb_c_2021_2nd_t)
+2021-10-18 10:49:31 [DEBUG] c.psw.exam.demo.DemoTest1Application - Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-10-18 10:49:31 [INFO ] c.psw.exam.demo.DemoTest1Application - No active profile set, falling back to default profiles: default
+2021-10-18 10:49:31 [DEBUG] o.s.boot.SpringApplication - Loading source class com.psw.exam.demo.DemoTest1Application

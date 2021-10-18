@@ -52,7 +52,7 @@ public class MemberService {
 	}
 
 	// name, email을 repository에 요청
-	private Member getMemberByNameAndEmail(String name, String email) {
+	public Member getMemberByNameAndEmail(String name, String email) {
 		return memberRepository.getMemberByNameAndEmail(name, email);
 	}
 
