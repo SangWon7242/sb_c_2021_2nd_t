@@ -109,6 +109,9 @@ public interface MemberRepository {
 			String cellphoneNo);
 
 
+
+
+
 	
 	
 }

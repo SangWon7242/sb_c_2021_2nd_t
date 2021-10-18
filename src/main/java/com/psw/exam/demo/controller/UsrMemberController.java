@@ -260,6 +260,9 @@ public class UsrMemberController {
 		
 		ResultData notifyTempLoginPwByEmailRd = memberService.notifyTempLoginPwByEmail(member);
 		
+		if( notifyTempLoginPwByEmailRd.isFail()) {
+			return rq.historyBackJsOnView(notifyTempLoginPwByEmailRd.getMsg());
+		}
 		
 		return rq.jsReplace(notifyTempLoginPwByEmailRd.getMsg(), "/");		
 	}

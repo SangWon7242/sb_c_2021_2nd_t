@@ -61,7 +61,7 @@ public class MemberService {
 	public Member getMemberByLoginId(String loginId) {
 		return memberRepository.getMemberByLoginId(loginId);
 	}
-
+	
 	// name, email을 repository에 요청
 	public Member getMemberByNameAndEmail(String name, String email) {
 		return memberRepository.getMemberByNameAndEmail(name, email);
@@ -118,7 +118,12 @@ public class MemberService {
 	}
 
 	private void setTempPassword(Member actor, String tempPassword) {
+		
+		// 고객한테는 패스워드 원문을 보내주고 DB 저장할 때는 암호화 해서 저장.
+		tempPassword = Ut.sha256(tempPassword);
+		
 		memberRepository.modify(actor.getId(), tempPassword, null, null, null, null);		
 	}
+
 
 }
