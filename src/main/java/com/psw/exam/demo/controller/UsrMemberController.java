@@ -228,7 +228,40 @@ public class UsrMemberController {
 		}
 		
 		
-		return rq.jsReplace(Ut.f("회원님의 아이디는 `%s` 입니다.", member.getLoginId()), "/usr/home/main");
-		
+		return rq.jsReplace(Ut.f("회원님의 아이디는 `%s` 입니다.", member.getLoginId()), "/usr/home/main");		
 	}
+	
+	@RequestMapping("/usr/member/findLoginPw")
+	public String showFindLoginPw() {
+		return "usr/member/findLoginPw";
+	}
+	
+	@RequestMapping("/usr/member/doFindLoginPw")
+	@ResponseBody
+	public String doFindLoginPw(String loginId, String email) {
+		
+		if(Ut.empty(loginId)) {
+			return rq.jsHistoryBack("loginId(을)를 입력해주세요.");
+		}
+				
+		if(Ut.empty(email)) {
+			return rq.jsHistoryBack("email(을)를 입력해주세요.");
+		}
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		
+		if( member == null) {
+			return rq.jsHistoryBack("일치하는 회원이 존재하지 않습니다.");
+		}
+		
+		if( member.getEmail().equals(email) == false) {
+			return rq.jsHistoryBack("일치하는 회원이 존재하지 않습니다.");
+		}
+		
+		ResultData notifyTempLoginPwByEmailRd = memberService.notifyTempLoginPwByEmail(member);
+		
+		
+		return rq.jsReplace(notifyTempLoginPwByEmailRd.getMsg(), "/");		
+	}
+	
 }

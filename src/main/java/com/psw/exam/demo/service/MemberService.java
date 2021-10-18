@@ -1,6 +1,7 @@
 package com.psw.exam.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.psw.exam.demo.repository.MemberRepository;
@@ -8,15 +9,25 @@ import com.psw.exam.demo.util.Ut;
 import com.psw.exam.demo.vo.Member;
 import com.psw.exam.demo.vo.ResultData;
 
+import ch.qos.logback.classic.pattern.Util;
+
 @Service
 public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
 	private AttrService attrService;
+	private MailService mailService;
 	
-	public MemberService(AttrService attrService, MemberRepository memberRepository) {
+	
+	@Value("${custom.siteMainUri}")
+	private String siteMainUri;
+	@Value("${custom.siteName}")
+	private String siteName;
+
+	public MemberService(MailService mailService, AttrService attrService, MemberRepository memberRepository) {
+		this.mailService = mailService;
 		this.attrService = attrService;
-		this.memberRepository = memberRepository;
+		this.memberRepository = memberRepository;		
 	}
 
 	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
@@ -66,26 +77,48 @@ public class MemberService {
 	public String genMemberModifyAuthKey(int actorId) {
 		String memberModifyAuthKey = Ut.getTempPassword(10);
 
-		attrService.setValue("member", actorId, "extra", "memberModifyAuthKey", memberModifyAuthKey, Ut.getDateStrLater(60 * 5));
+		attrService.setValue("member", actorId, "extra", "memberModifyAuthKey", memberModifyAuthKey,
+				Ut.getDateStrLater(60 * 5));
 
 		return memberModifyAuthKey;
 	}
 
 	public ResultData checkMemberModifyAuthKey(int actorId, String memberModifyAuthKey) {
 		String saved = attrService.getValue("member", actorId, "extra", "memberModifyAuthKey");
-		
-		if( !saved.equals(memberModifyAuthKey)) {
+
+		if (!saved.equals(memberModifyAuthKey)) {
 			return ResultData.from("F-1", "일치하지 않거나 만료되었습니다.");
 		}
-		
+
 		return ResultData.from("S-1", "정상적인 코드입니다.");
 	}
 
-	public ResultData join(int id, String loginId, String loginPw, String name, String nickname,
-			String email, String cellphoneNo) {
+	public ResultData join(int id, String loginId, String loginPw, String name, String nickname, String email,
+			String cellphoneNo) {
 		memberRepository.join(id, loginId, loginPw, name, nickname, email, cellphoneNo);
 
 		return ResultData.from("S-1", "회원가입이 완료되었습니다.");
+	}
+
+	public ResultData notifyTempLoginPwByEmail(Member actor) {
+		String title = "[" + siteName + "] 임시 패스워드 발송";
+		String tempPassword = Ut.getTempPassword(6);
+		String body = "<h1>임시 패스워드 : " + tempPassword + "</h1>";
+		body += "<a href=\"" + siteMainUri + "/usr/member/login\" target=\"_blank\">로그인 하러가기</a>";
+
+		ResultData sendResultData = mailService.send(actor.getEmail(), title, body);
+
+		if (sendResultData.isFail()) {
+			return sendResultData;
+		}
+
+		setTempPassword(actor, tempPassword);
+
+		return ResultData.from("S-1", "계정의 이메일주소로 임시 패스워드가 발송되었습니다.");
+	}
+
+	private void setTempPassword(Member actor, String tempPassword) {
+		memberRepository.modify(actor.getId(), tempPassword, null, null, null, null);		
 	}
 
 }

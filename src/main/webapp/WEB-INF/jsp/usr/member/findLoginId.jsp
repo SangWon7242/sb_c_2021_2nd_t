@@ -39,7 +39,7 @@
 
 <section class="section section-login flex-grow flex items-center justify-center">
   <div class="flex-grow max-w-md px-2 pt-4">
-    <form class="flex flex-col method=" POST" action="../member/doFindLoginId"
+    <form class="flex flex-col" method="POST" action="../member/doFindLoginId"
       onsubmit="MemberFindLoginId__submit(this); return false;">
       <table>
         <tbody>
