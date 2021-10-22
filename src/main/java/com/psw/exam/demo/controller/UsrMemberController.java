@@ -83,7 +83,7 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
-	public String doLogin(String loginId, String loginPw) {
+	public String doLogin(String loginId, String loginPw, String redirectUrl) {
 
 		if (Ut.empty(loginId)) {
 			return rq.jsHistoryBack("loginId(을)를 입력해주세요.");
@@ -107,15 +107,13 @@ public class UsrMemberController {
 		boolean isUsingTempPassword = memberService.isUsingTempPassword(member.getId());
 
 		rq.login(member);
-				
+
 		if (isUsingTempPassword) {
 			return rq.jsReplace(Ut.f("%s님은 현재 임시 비밀번호를 사용하고 있습니다. 변경 후 이용해주세요.", member.getNickname()),
 					"/usr/member/myPage");
 		}
 
-
-
-		return rq.jsReplace(Ut.f("%s님 환영합니다.", member.getNickname()), "/usr/home/main");
+		return rq.jsReplace(Ut.f("%s님 환영합니다.", member.getNickname()), redirectUrl);
 
 	}
 
