@@ -140,7 +140,6 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/write")
 	public String showWrite(Model model) {
-
 		return "usr/article/write";
 	}
 

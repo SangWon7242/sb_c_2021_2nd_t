@@ -1,14 +1,13 @@
 package com.psw.exam.demo.interceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.psw.exam.demo.vo.Rq;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.psw.exam.demo.vo.Rq;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@Component
+@Component("beforeActionIntercepter")
 public class BeforeActionInterceptor implements HandlerInterceptor {
 	private Rq rq;
 	
@@ -19,7 +18,6 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
 		rq.initOnBeforeActionInterceptor();
-		
 		return HandlerInterceptor.super.preHandle(req, resp, handler);
 	}
 }

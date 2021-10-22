@@ -18,9 +18,12 @@ public class NeedLoginInterceptor implements HandlerInterceptor {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-			
-		if(!rq.isLogined()) {
-			rq.printHistoryBackJs("로그인 후 이용해주세요.");
+		resp.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html; charset=UTF-8");
+		
+		if(!rq.isLogined()) {			
+			String afterLoginUri = rq.getEncodedCurrentUri();
+			resp.getWriter().append(rq.jsReplace("로그인 후 이용해 주세요.", "../member/login?afterLoginUri=" + afterLoginUri));
 			return false;
 		}
 

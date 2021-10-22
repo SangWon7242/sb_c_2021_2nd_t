@@ -1,15 +1,12 @@
 package com.psw.exam.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 import com.psw.exam.demo.repository.MemberRepository;
 import com.psw.exam.demo.util.Ut;
 import com.psw.exam.demo.vo.Member;
 import com.psw.exam.demo.vo.ResultData;
-
-import ch.qos.logback.classic.pattern.Util;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MemberService {
@@ -17,8 +14,7 @@ public class MemberService {
 	private MemberRepository memberRepository;
 	private AttrService attrService;
 	private MailService mailService;
-	
-	
+
 	@Value("${custom.siteMainUri}")
 	private String siteMainUri;
 	@Value("${custom.siteName}")
@@ -27,7 +23,7 @@ public class MemberService {
 	public MemberService(MailService mailService, AttrService attrService, MemberRepository memberRepository) {
 		this.mailService = mailService;
 		this.attrService = attrService;
-		this.memberRepository = memberRepository;		
+		this.memberRepository = memberRepository;
 	}
 
 	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
@@ -61,7 +57,7 @@ public class MemberService {
 	public Member getMemberByLoginId(String loginId) {
 		return memberRepository.getMemberByLoginId(loginId);
 	}
-	
+
 	// name, email을 repository에 요청
 	public Member getMemberByNameAndEmail(String name, String email) {
 		return memberRepository.getMemberByNameAndEmail(name, email);
@@ -70,6 +66,10 @@ public class MemberService {
 	public ResultData modify(int id, String loginPw, String name, String nickname, String email, String cellphoneNo) {
 
 		memberRepository.modify(id, loginPw, name, nickname, email, cellphoneNo);
+
+		if (loginPw != null) {
+			attrService.remove("member", id, "extra", "useTempPassword");
+		}
 
 		return ResultData.from("S-1", "회원정보가 수정되었습니다.");
 	}
@@ -112,18 +112,22 @@ public class MemberService {
 			return sendResultData;
 		}
 
+		// 고객한테는 패스워드 원문을 보내주고 DB 저장할 때는 암호화 해서 저장.
+		tempPassword = Ut.sha256(tempPassword);
+
 		setTempPassword(actor, tempPassword);
 
 		return ResultData.from("S-1", "계정의 이메일주소로 임시 패스워드가 발송되었습니다.");
 	}
 
 	private void setTempPassword(Member actor, String tempPassword) {
-		
-		// 고객한테는 패스워드 원문을 보내주고 DB 저장할 때는 암호화 해서 저장.
-		tempPassword = Ut.sha256(tempPassword);
-		
-		memberRepository.modify(actor.getId(), tempPassword, null, null, null, null);		
+		attrService.setValue("member", actor.getId(), "extra", "useTempPassword", "1", null);
+
+		memberRepository.modify(actor.getId(), tempPassword, null, null, null, null);
 	}
 
+	public boolean isUsingTempPassword(int id) {
+		return attrService.getValue("member", id, "extra", "useTempPassword").equals("1");
+	}
 
 }

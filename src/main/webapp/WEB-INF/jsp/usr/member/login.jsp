@@ -42,6 +42,7 @@
   <div class="flex-grow max-w-md px-2 pt-4">
     <form class="flex flex-col" method="POST" action="../member/doLogin"
       onsubmit="MemberLogin__submitForm(this); return false;">
+      <input type="hidden" name="redirectUrl" value="${param.afterLoginUrl}"/>
       <input type="hidden" name="loginPw" />
       <table>
         <div class="form-control">

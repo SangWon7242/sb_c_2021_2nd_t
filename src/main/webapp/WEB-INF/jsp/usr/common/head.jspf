@@ -29,7 +29,7 @@
 <body> 
   <header class="flex">
     <div class="h-20 flex container mx-auto">
-      <a href="/" class="top-bar__logo px-5 flex items-center">
+        <a href="/" class="top-bar__logo px-5 flex items-center">
         <span><i class="fas fa-hand-peace"></i></span>
         <span class="ml-2 font-bold hidden sm:inline">로고</span>
       </a>
