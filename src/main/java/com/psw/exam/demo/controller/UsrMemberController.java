@@ -83,7 +83,7 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
-	public String doLogin(String loginId, String loginPw, String redirectUrl) {
+	public String doLogin(String loginId, String loginPw, String redirectUri) {
 
 		if (Ut.empty(loginId)) {
 			return rq.jsHistoryBack("loginId(을)를 입력해주세요.");
@@ -113,7 +113,7 @@ public class UsrMemberController {
 					"/usr/member/myPage");
 		}
 
-		return rq.jsReplace(Ut.f("%s님 환영합니다.", member.getNickname()), redirectUrl);
+		return rq.jsReplace(Ut.f("%s님 환영합니다.", member.getNickname()), "/usr/home/main");
 
 	}
 

@@ -16,7 +16,6 @@
 <!-- 데이지 유아이 -->
 <link href="https://cdn.jsdelivr.net/npm/daisyui@1.12.0/dist/full.css" rel="stylesheet" type="text/css" />
 
-
 <!-- 폰트어썸 불러오기 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
@@ -27,12 +26,12 @@
 
 </head>
 <body> 
-  <header class="flex">
-    <div class="h-20 flex container mx-auto">
-        <a href="/" class="top-bar__logo px-5 flex items-center">
-        <span><i class="fas fa-hand-peace"></i></span>
-        <span class="ml-2 font-bold hidden sm:inline">로고</span>
-      </a>
+  <header class="flex-shrink-0">
+    <div class="shadow font-bold h-20 flex mx-auto">
+      <a href="/" class="top-bar__logo px-5 flex items-center">
+        <span class="text-2xl"><i class="fas fa-hand-peace"></i></span>
+        <span class="ml-2 font-bold hidden sm:inline text-3xl">로고</span>
+      </a>  
       
       <div class="flex-grow"></div>
       
