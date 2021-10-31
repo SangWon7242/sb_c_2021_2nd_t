@@ -4,7 +4,7 @@
 <html lang="ko" class="light" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<title>${pageTitle}</title>
+<title>박상원의 포트폴리오</title>
 
 <!-- 제이쿼리 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -27,7 +27,7 @@
 </head>
 <body> 
   <header class="flex-shrink-0">
-    <div class="shadow font-bold h-20 flex mx-auto">
+    <div class="scroll shadow font-bold h-20 flex mx-auto">
       <a href="/" class="top-bar__logo px-5 flex items-center">
         <span class="text-2xl"><i class="fas fa-hand-peace"></i></span>
         <span class="ml-2 font-bold hidden sm:inline text-3xl">로고</span>
@@ -87,10 +87,5 @@
     </div> 
   </header>
   
-  <section class="mt-5">
-    <div class="container mx-auto px-3">
-      <h1>${pageTitle} 페이지</h1>
-    </div>
-  </section>
    
-  <main>
+  <main class="flex flex-col">

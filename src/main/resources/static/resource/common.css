@@ -41,7 +41,18 @@ html > body {
 
 /* 커스텀 */
 body {
-	min-width: 800px; 	
+	min-width: 900px; 	
 }
 
+.Line {
+	border-bottom : 2px solid #212121;
+}
 
+.Line_2 {
+	border-bottom : 2px solid black;	
+}
+
+.skill-wrap {
+	display: felx;
+	flex-direction: columns;
+}
