@@ -19,7 +19,7 @@
               <a href="/">초급개발자로 전직중</a>
             </div>
             <div class="mt-2 text-xl">백엔드 개발자입니다. 풀스텍을 목표로 공부중입니다.</div>
-            <div class="mt-2" style="border-bottom: 2px solid black;"></div>
+            <div class="mt-6 border-b-2"></div>
             <div class="Links mt-1 flex flex-row justify-center">
               <a href="https://github.com/SangWon7242" class="text-2xl hover:text-gray-300 hover:text-gray-300">
                 <span class="text-xl">
@@ -47,7 +47,7 @@
   </div>
 </section>
 
-<section class="section section-2 mt-16 flex justify-center">
+<section class="section section-2 mt-12 flex justify-center">
   <div class="flex flex-row">
     <div class="flex-glow w-screen h-screen">
       <div class="flex flex-col items-center mt-5 h-auto bg-gray-100">
@@ -56,7 +56,7 @@
           <div class="mt-2 h-1 w-16 bg-black"></div>
         </div>
         <div class="Backend-Skills mt-10">
-          <div class="font-bold text-xl text-center" style="border-bottom: 2px solid black;">Backend</div>
+          <div class="font-bold text-xl text-center border-b-2" >Backend</div>
           <div class="Backend-Skills-Icon mt-2 flex flex-row">
             <div class="java bg-white h-44 w-40 rounded-xl flex justify-center" style="box-shadow: 3px 3px 3px;">
               <span class="flex items-center justify-center w-24">

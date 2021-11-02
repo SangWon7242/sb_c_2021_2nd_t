@@ -21,8 +21,8 @@
           <tr>
             <th>게시판</th>
             <td>
-              <select class="select select-bordered" name="boardId" >
-                <option selected disabled>게시판을 선택해주세요.</option>
+              <select class="select select-bordered w-full max-w-xs" name="boardId" >
+                <option disabled="disabled" selected="selected">게시판을 선택해주세요.</option>
                 <option value="1">공지</option>
                 <option value="2">자유</option>
               </select>

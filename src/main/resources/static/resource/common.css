@@ -44,15 +44,6 @@ body {
 	min-width: 900px; 	
 }
 
-.Line {
-	border-bottom : 2px solid #212121;
-}
+/* 반응형 */
 
-.Line_2 {
-	border-bottom : 2px solid black;	
-}
 
-.skill-wrap {
-	display: felx;
-	flex-direction: columns;
-}

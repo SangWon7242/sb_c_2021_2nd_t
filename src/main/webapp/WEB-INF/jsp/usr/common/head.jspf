@@ -24,18 +24,18 @@
 <!-- 사이트 공통 JS -->
 <script src="/resource/common.js" defer="defer"></script>
 
+
 </head>
 <body> 
-  <header class="flex-shrink-0">
-    <div class="scroll shadow font-bold h-20 flex mx-auto">
-      <a href="/" class="top-bar__logo px-5 flex items-center">
-        <span class="text-2xl"><i class="fas fa-hand-peace"></i></span>
-        <span class="ml-2 font-bold hidden sm:inline text-3xl">로고</span>
+  <header class="topbar flex-shrink-0">
+    <div class="shadow font-bold h-20 flex mx-auto">
+      <a href="/" class="topbar_logo px-5 flex items-center">
+        <span class="ml-2 font-bold hidden sm:inline text-6xl text-green-300"><</span><span class="ml-2 font-bold hidden sm:inline text-4xl">SWPARK_coder</span><span class="ml-2 font-bold hidden sm:inline text-4xl text-green-300">/</span><span class="ml-2 font-bold hidden sm:inline text-6xl text-green-300">></span>
       </a>  
       
       <div class="flex-grow"></div>
       
-      <ul class="flex">
+      <ul class="topbar_menu flex">
         <li>
           <a class="h-full flex px-3 items-center hover:underline" href="/">
             <span>홈</span>

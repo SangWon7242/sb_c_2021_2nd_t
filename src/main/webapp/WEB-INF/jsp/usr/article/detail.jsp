@@ -171,39 +171,38 @@
 <!-- 댓글 작성 폼 구현 -->
 <section class="mt-5">
   <div class="container mx-auto px-3">
-    <h1>댓글 작성</h1>
+    <div class="font-bold text-xl ml-4">의견 쓰기</div>
     <c:if test="${rq.logined}">
       <form class="table-box-type-1" method="POST" action="../reply/doWrite"
         onsubmit="ReplyWrite__submitForm(this); return false;">
         <input type="hidden" name="relTypeCode" value="article" />
         <input type="hidden" name="relId" value="${article.id}" />
-        <table>
-          <colgroup>
-            <col width="200" />
-          </colgroup>
-          <tbody>
-            <tr>
-              <th>작성자</th>
-              <td>${rq.loginedMember.nickname}</td>
-            </tr>
-            <tr>
-              <th>내용</th>
-              <td>
-                <textarea class="w-full textarea textarea-bordered" name="body" rows="5" placeholder="내용"></textarea>
-              </td>
-            </tr>
-            <tr>
-              <th>댓글작성</th>
-              <td>
-                <button type="submit" class="btn btn-primary">댓글작성</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="border-0">
+          <div class="px-4 py-2 flex flex-col ">
+            <div class="name_box">
+              <span>${rq.loginedMember.nickname}</span>
+            </div>
+            <div>
+              <textarea class="w-full textarea textarea-bordered" name="body" rows="5" placeholder="내용"></textarea>
+            </div>
+            <div class="flex flex-row">
+              <div class="flex-grow"></div>
+              <button type="submit" class="btn btn-primary">의견쓰기</button>
+            </div>
+          </div>
+        </div>
       </form>
     </c:if>
     <c:if test="${rq.notLogined}">
-      <a class="link link-primary" href="/usr/member/login">로그인</a> 후 이용해주세요.
+      <div class="reply_write_inner border-2 border-gray-200 mt-2 h-14">
+        <div class="reply_inbox flex py-3 ml-4">
+          <label for="reply_textarea">
+            댓글을 작성하려면&nbsp;
+            <a class="link link-primary" href="/usr/member/login">로그인</a>&nbsp;
+            해주세요.
+          </label>
+        </div>
+      </div>
     </c:if>
   </div>
 </section>
