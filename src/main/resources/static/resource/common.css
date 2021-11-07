@@ -41,9 +41,13 @@ html > body {
 
 /* 커스텀 */
 body {
-	min-width: 900px; 	
+	margin: 0px; 	
 }
 
 /* 반응형 */
-
+@media (min-width: 1024px) {
+  .top-navbar {
+    display: inline-flex !important;
+  }
+}
 

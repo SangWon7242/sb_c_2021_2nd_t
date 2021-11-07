@@ -6,7 +6,7 @@
 
 <section class="section section-1 mt-16 flex justify-center">
   <div class="flex flex-row">
-    <div class="flex flex-glow w-full h-auto">
+    <div class="flex flex-glow w-auto h-auto">
       <div class="info-box">
         <div class="flex flex-row justify-center">
           <div class="mt-3 ml-5">
