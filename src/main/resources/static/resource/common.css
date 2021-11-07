@@ -45,6 +45,12 @@ body {
 }
 
 /* 반응형 */
+@media (max-width: 540px) {
+  .profile-img {
+    display: none;
+  }
+}
+
 @media (min-width: 1024px) {
   .top-navbar {
     display: inline-flex !important;

@@ -47,7 +47,7 @@
     <input type="hidden" name="redirectUri" value="${param.afterLoginUri}" />
     <input type="hidden" name="loginPw" />
 
-    <h2 class="text-2xl my-4">Login</h2>
+    <h2 class="font-bold text-2xl my-4">Login</h2>
     <div id="whoobe-h90kl" class="w-full p-2 justify-start flex flex-col">
       <div id="whoobe-7izhv" class=" flex flex-row">
         <span id="whoobe-plfl9"
@@ -92,9 +92,9 @@
 
 </section>
 
-<div class="btns flex items-cneter justify-center">
-  <a href="../member/findLoginId" class="btn btn-link text-black">아이디 찾기</a>
-  <a href="../member/findLoginPw" class="btn btn-link text-black">비밀번호 찾기</a>
+<div class="btns mt-3 font-bold flex items-cneter justify-center gap-3">
+  <a href="../member/findLoginId" class="hover:underline">아이디 찾기</a>
+  <a href="../member/findLoginPw" class="hover:underline">비밀번호 찾기</a>
 </div>
 
 
