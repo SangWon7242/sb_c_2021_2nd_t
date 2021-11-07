@@ -90,77 +90,43 @@
 	}
 </script>
 
-<section class="mt-5">
-  <div class="container mx-auto px-3">
-    <form class="table-box-type-1" method="POST" action="../member/doJoin"
+<div class="grid min-h-screen place-items-center">
+      <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12">
+        <h1 class="text-xl font-semibold">Hello there 👋, <span class="font-normal">please fill in your information to continue</span></h1>
+        
+        <form class="mt-6" method="POST" action="../member/doJoin"
       onsubmit="MemberJoin__submit(this); return false;">
-      <input type="hidden" name="loginPw" />     
-      <table>
-        <colgroup>
-          <col width="200" />
-        </colgroup>
-        <tbody>
-          <tr>
-            <th>로그인 아이디</th>
-            <td>
-              <input class="input input-bordered" name="loginId" placeholder="아이디를 입력해주세요." type="text" />
-            </td>            
-          </tr>
+        <input type="hidden" name="loginPw" />
+        
+          <label for="loginId" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Loginid</label>
+          <input id="loginId" type="text" name="loginId" placeholder="아이디를 입력해주세요." autocomplete="loginId" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
-          <tr>
-            <th>로그인 비밀번호</th>
-            <td>
-              <input class="input input-bordered" name="loginPwInput" placeholder="비밀번호를 입력해주세요." type="password" />
-            </td>
-          </tr>
+          <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Password</label>
+          <input id="password" type="password" name="loginPwConfirm" placeholder="********" autocomplete="new-password" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
-          <tr>
-            <th>로그인 비밀번호 확인</th>
-            <td>
-              <input class="input input-bordered" name="loginPwConfirm" placeholder="비밀번호 확인을 입력해주세요." type="password" />
-            </td>
-          </tr>
+          <label for="password-confirm" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Confirm password</label>
+          <input id="password-confirm" type="password" name="loginPwConfirm" placeholder="********" autocomplete="new-password" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
-          <tr>
-            <th>이름</th>
-            <td>
-              <input class="input input-bordered" name="name" placeholder="이름을 입력해주세요." type="text" />
-            </td>
-          </tr>
+          <label for="name" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">name</label>
+          <input id="name" type="text" name="name" placeholder="이름을 입력해주세요." autocomplete="name" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
-          <tr>
-            <th>별명</th>
-            <td>
-              <input class="input input-bordered" name="nickname" placeholder="별명을 입력해주세요." type="text" />
-            </td>
-          </tr>
+          <label for="nickname" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Nickname</label>
+          <input id="nickname" type="text" name="nickname" placeholder="별명을 입력해주세요." autocomplete="loginId" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
-          <tr>
-            <th>이메일</th>
-            <td>
-              <input class="input input-bordered" name="email" placeholder="이메일을 입력해주세요." type="email" />
-            </td>
-          </tr>
+          <label for="email" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">E-mail</label>
+          <input id="email" type="email" name="email" placeholder="이메일을 입력해주세요." autocomplete="email" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
-          <tr>
-            <th>휴대전화번호</th>
-            <td>
-              <input class="input input-bordered" name="cellphoneNo" placeholder="휴대전화번호를 입력해주세요." type="tel" />
-            </td>
-          </tr>
+          <label for="tel" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">cellphone-no</label>
+          <input id="tel" type="tel" name="tel" placeholder="휴대폰 번호를 입력해주세요." autocomplete="loginId" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
-          <tr>
-            <th>회원가입</th>
-            <td>
-              <button type="submit" class="btn btn-primary" >회원가입</button>
-              <button type="button" class="btn btn-outline btn-secondary" onclick="history.back();">뒤로가기</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
+          <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+            Sign up
+          </button>
+
+          <p class="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black" onclick="history.back();">Already registered?</p>
+        </form>
+      </div>
   </div>
-</section>
 
 
 <%@ include file="../common/foot.jspf"%>

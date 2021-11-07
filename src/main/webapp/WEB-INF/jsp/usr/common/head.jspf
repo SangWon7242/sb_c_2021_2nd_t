@@ -9,9 +9,20 @@
 <!-- 제이쿼리 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<!-- 토스트 UI -->
-<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
 
 <!-- 테일윈드 불러오기 -->
 <!-- 노말라이즈, 라이브러리까지 한방에 해결 -->
@@ -27,7 +38,6 @@
 <link rel="stylesheet" href="/resource/common.css" />
 <!-- 사이트 공통 JS -->
 <script src="/resource/common.js" defer="defer"></script>
-
 
 
 </head>
@@ -82,7 +92,7 @@
             <span>마이페이지</span>
           </a>
         </c:if>
-        <c:if test="${rq.isLogined()}">
+        <c:if test="${!rq.isLogined()}">
           <a href="/usr/member/join"
             class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white">
             <span>회원가입</span>

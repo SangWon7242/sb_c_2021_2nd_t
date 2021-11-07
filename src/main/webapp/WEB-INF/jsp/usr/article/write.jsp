@@ -47,6 +47,8 @@
           <tr>
             <th>내용</th>
             <td>
+              <script type="text/x-template"></script>
+              <div class="toast-ui-editor input-body"></div>
               <textarea required="required" class="w-full textarea textarea-bordered" name="body" rows="10" placeholder="내용"></textarea>
             </td>
           </tr>

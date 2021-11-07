@@ -182,7 +182,7 @@
             <div class="name_box">
               <span>${rq.loginedMember.nickname}</span>
             </div>
-            <div>
+            <div class="mt-1">
               <textarea class="w-full textarea textarea-bordered" name="body" rows="5" placeholder="내용"></textarea>
             </div>
             <div class="flex flex-row">
