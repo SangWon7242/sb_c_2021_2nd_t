@@ -4,69 +4,60 @@
 <c:set var="pageTitle" value="게시물 작성" />
 <%@ include file="../common/head.jspf"%>
 
-<section class="mt-5">
-  <div class="container mx-auto px-3">
-    <form class="table-box-type-1" method="POST" action="../article/doWrite">
-      <table>
-        <colgroup>
-          <col width="200" />
-        </colgroup>
-        <tbody>
-          <tr>
-            <th>작성자</th>
-            <td>
-              ${rq.loginedMember.nickname}
-            </td>
-          </tr>
-          <tr>
-            <th>게시판</th>
-            <td>
-              <select class="select select-bordered w-full max-w-xs gap-4" name="boardId" >
+<section class="mt-3">
+  <!-- component -->
+  <div class="py-8">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 bg-white border-b border-gray-200">
+          <form method="POST" action="../article/doWrite">
+            <div class="mb-4">
+              <label class="text-xl text-gray-600">
+                게시판
+                <span class="text-red-500">*</span>
+              </label>
+              </br>
+              <select class="border-2 border-gray-300 p-2 w-full" name="boardId">
                 <option disabled="disabled" selected="selected">게시판을 선택해주세요.</option>
                 <option value="1">공지</option>
                 <option value="2">자유</option>
               </select>
-              <!-- 또 다른 방법
-              <label>
-                공지
-                <input type="radio" name="boardId" value="1" />
+            </div>
+
+            <div class="mb-4">
+              <label class="text-xl text-gray-600">
+                제목
+                <span class="text-red-500">*</span>
               </label>
-              <label>
-                자유
-                <input type="radio" name="boardId" value="2" />
+              </br>
+              <input type="text" class="border-2 border-gray-300 p-2 w-full" name="title" id="title" value="" required>
+            </div>
+
+            <div class="mb-5">
+              <label class="text-xl text-gray-600">
+                내용
+                <span class="text-red-500">*</span>
               </label>
-              -->
-            </td>
-          </tr>
-          <tr>
-            <th>제목</th>
-            <td>
-              <input required="required" class="w-96 input input-bordered" name="title" type="text" placeholder="제목" />
-            </td>
-          </tr>
-          <tr>
-            <th>내용</th>
-            <td>
-              <script type="text/x-template"></script>
-              <div class="toast-ui-editor input-body"></div>
-              <textarea required="required" class="w-full textarea textarea-bordered" name="body" rows="10" placeholder="내용"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <th>작성</th>
-            <td>
-              <button type="submit" class="btn btn-primary">작성</button>
-              <button type="button" class="btn btn-secondary btn-outline" onclick="history.back();">뒤로가기</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
-    
-    <div class="btns">
-      
+              </br>
+              <textarea name="body" class="border-2 border-gray-500">
+                                
+                            </textarea>
+            </div>
+
+            <div class="flex justify-end p-1">
+              <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center required">작성</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
+<script>
+	CKEDITOR.replace('body');
+</script>
 
 <%@ include file="../common/foot.jspf"%>
