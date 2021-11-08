@@ -205,19 +205,12 @@
   </div>
 </section>
 
-<section class="section section-4 flex justify-center">
-  <div class="Copyright w-full h-20 bg-black mt-10">
-    <div class="mt-7 flex justify-center">
-      <div class="font-bold text-sm text-gray-300">
-        Copyright ⓒ 2021
-        <span class="text-green-300">SWPARK</span>
-        All Rights Reserved.
-      </div>
-    </div>
-    <div class="bg-black"></div>
+<footer class="Copyright flex items-center justify-center h-28 bg-black p-2 pin-b mt-10 bottom-0">
+  <div class="font-bold text-sm text-gray-300">
+    Copyright ⓒ 2021
+    <span class="text-green-300">SWPARK</span>
+    All Rights Reserved.
   </div>
-</section>
-
-
+</footer>
 
 <%@ include file="../common/foot.jspf"%>
