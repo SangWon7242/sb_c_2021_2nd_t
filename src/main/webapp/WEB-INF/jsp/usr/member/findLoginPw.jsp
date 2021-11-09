@@ -34,7 +34,7 @@
 	}
 </script>
 
-<section class="section section-login flex-grow flex items-center justify-center">
+<section class="section section-login  mt-36 flex-grow flex items-center justify-center">
   <div class="flex-grow max-w-md px-2 pt-4">
     <form class="flex flex-col" method="POST" action="../member/doFindLoginPw"
       onsubmit="MemberFindLoginPw__submit(this); return false;">      
@@ -59,9 +59,9 @@
             <input class="btn btn-primary w-full" type="submit" value="비밀번호 찾기" />
           </div>
 
-          <div class="btns mt-3 flex justify-center">
-            <a href="../member/login" class="btn btn-link">로그인</a>
-            <a href="../member/join" class="btn btn-link">회원가입</a>
+          <div class="btns mt-3 font-bold flex items-cneter justify-center gap-3">
+            <a href="../member/login" class="hover:underline">로그인</a>
+            <a href="../member/join" class="hover:underline">회원가입</a>
           </div>
 
         </tbody>

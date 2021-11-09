@@ -9,7 +9,7 @@
     <div class="flex flex-glow w-full h-auto">
       <div class="info-box">
         <div class="flex flex-row justify-center">
-          <div class="profile-img mt-3 ml-5">
+          <div class="profile-img mt-3 ml-5 hidden lg:inline-block">
             <a href="/">
               <img src='https://ifh.cc/g/NbEFOj.jpg' class="rounded-full h-24 w-24">
             </a>

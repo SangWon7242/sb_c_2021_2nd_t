@@ -25,6 +25,7 @@ spring:
 mybatis:
   type-aliases-package: com.psw.exam.demo.vo
 custom:
+  needToChangePasswordFreeDays: 90
   siteMainUri: http//localhost:8021/
   siteName: 커뮤니티페이지
   emailFrom: gotkdqja@localhost

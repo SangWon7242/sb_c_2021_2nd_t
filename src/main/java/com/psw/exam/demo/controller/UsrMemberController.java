@@ -102,11 +102,20 @@ public class UsrMemberController {
 		if (member.getLoginPw().equals(loginPw) == false) {
 			return rq.jsHistoryBack("비밀번호가 일치하지 않습니다.");
 		}
-
+		
+		// 가입한 초기 비밀번호가 90일이 지나면 변경을 권유
+		boolean needToChangePassword = memberService.needToChangePassword(member.getId());
+		
 		// 로그인 한 회원이 tempPassword 쓰고 있는지 확인
-		boolean isUsingTempPassword = memberService.isUsingTempPassword(member.getId());
+		boolean isUsingTempPassword = memberService.usingTempPassword(member.getId());
 
 		rq.login(member);
+		
+
+		if ( needToChangePassword ) {
+			return rq.jsReplace(Ut.f("%s님은 현재 비밀번호를 사용한지" + memberService.getNeedToChangePasswordFreeDays() + "일이 지났습니다.", member.getNickname()),
+					"/usr/member/myPage");
+		}
 
 		if (isUsingTempPassword) {
 			return rq.jsReplace(Ut.f("%s님은 현재 임시 비밀번호를 사용하고 있습니다. 변경 후 이용해주세요.", member.getNickname()),

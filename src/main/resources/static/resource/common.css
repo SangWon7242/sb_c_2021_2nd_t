@@ -16,7 +16,7 @@
   font-weight: 300;
   src: url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff') format('woff');
 }
-html > body,  html > body .tui-editor-contents {
+html > body {
  font-family: 'LotteMartDream', sans-serif;
 }
 
@@ -45,11 +45,6 @@ body {
 }
 
 /* 반응형 */
-@media (max-width: 540px) {
-  .profile-img {
-    display: none;
-  }
-}
 
 @media (min-width: 1024px) {
   .top-navbar {

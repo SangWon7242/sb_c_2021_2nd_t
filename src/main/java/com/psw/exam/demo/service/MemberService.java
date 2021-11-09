@@ -19,11 +19,17 @@ public class MemberService {
 	private String siteMainUri;
 	@Value("${custom.siteName}")
 	private String siteName;
+	@Value("${custom.needToChangePasswordFreeDays}")
+	private int needToChangePasswordFreeDays;
 
 	public MemberService(MailService mailService, AttrService attrService, MemberRepository memberRepository) {
 		this.mailService = mailService;
 		this.attrService = attrService;
 		this.memberRepository = memberRepository;
+	}
+	
+	public int getNeedToChangePasswordFreeDays() {
+		return needToChangePasswordFreeDays;
 	}
 
 	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
@@ -68,6 +74,7 @@ public class MemberService {
 		memberRepository.modify(id, loginPw, name, nickname, email, cellphoneNo);
 
 		if (loginPw != null) {
+			setNeedToChangePasswordLater(id);
 			attrService.remove("member", id, "extra", "useTempPassword");
 		}
 
@@ -96,8 +103,15 @@ public class MemberService {
 	public ResultData join(int id, String loginId, String loginPw, String name, String nickname, String email,
 			String cellphoneNo) {
 		memberRepository.join(id, loginId, loginPw, name, nickname, email, cellphoneNo);
+		
+		setNeedToChangePasswordLater(id);
 
 		return ResultData.from("S-1", "회원가입이 완료되었습니다.");
+	}
+
+	private void setNeedToChangePasswordLater(int id) {
+		int days = getNeedToChangePasswordFreeDays();		
+		attrService.setValue("member", id, "extra", "needToChangePassword", "0", Ut.getDateStrLater(60 * 60 * 24 * days));		
 	}
 
 	public ResultData notifyTempLoginPwByEmail(Member actor) {
@@ -126,8 +140,12 @@ public class MemberService {
 		memberRepository.modify(actor.getId(), tempPassword, null, null, null, null);
 	}
 
-	public boolean isUsingTempPassword(int id) {
+	public boolean usingTempPassword(int id) {
 		return attrService.getValue("member", id, "extra", "useTempPassword").equals("1");
+	}
+
+	public boolean needToChangePassword(int id) {
+		return attrService.getValue("member", id, "extra", "needToChangePassword").equals("0") == false;
 	}
 
 }

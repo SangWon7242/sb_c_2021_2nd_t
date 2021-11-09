@@ -102,7 +102,7 @@
           <input id="loginId" type="text" name="loginId" placeholder="아이디를 입력해주세요." autocomplete="loginId" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
           <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Password</label>
-          <input id="password" type="password" name="loginPw" placeholder="********" autocomplete="new-password" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+          <input id="password" type="password" name="loginPwInput" placeholder="********" autocomplete="new-password" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
           <label for="password-confirm" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Confirm password</label>
           <input id="password-confirm" type="password" name="loginPwConfirm" placeholder="********" autocomplete="new-password" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
@@ -116,7 +116,7 @@
           <label for="email" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">E-mail</label>
           <input id="email" type="email" name="email" placeholder="이메일을 입력해주세요." autocomplete="email" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
-          <label for="tel" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">cellphone-no</label>
+          <label for="tel" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">cellphone_no</label>
           <input id="tel" type="tel" name="cellphoneNo" placeholder="휴대폰 번호를 입력해주세요." autocomplete="cellphoneNo" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
           <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
