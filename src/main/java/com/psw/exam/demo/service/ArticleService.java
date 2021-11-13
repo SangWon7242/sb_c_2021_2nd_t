@@ -69,7 +69,7 @@ public class ArticleService {
 		
 		Article article = getForPrintArticle(0, id);
 		
-		return ResultData.from("S-1", Ut.f("%번 게시물이 수정되었습니다.", id), "article", article);
+		return ResultData.from("S-1", Ut.f("%d번 게시물이 수정되었습니다.", id), "article", article);
 	}
 
 	public ResultData actorCanModify(int actorId, Article article) {
