@@ -70,6 +70,6 @@ public interface ReplyRepository {
 			`body` = #{body}
 			WHERE id = #{id}
 			""")
-	void modifyReply(int id);
+	void modifyReply(int id, String body);
 	
 }

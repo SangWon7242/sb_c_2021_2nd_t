@@ -245,7 +245,7 @@ ON A.id = RP_SUM.relId
 SET A.goodReactionPoint = RP_SUM.goodReactionPoint,
 A.badReactionPoint = RP_SUM.badReactionPoint;
 
-# 리액션포인트 테이블
+# 댓글 테이블 추가
 CREATE TABLE reply (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
@@ -299,7 +299,6 @@ ADD COLUMN badReactionPoint INT(10) UNSIGNED NOT NULL DEFAULT 0;
 ALTER TABLE `reply` ADD INDEX(`relTypeCode`, `relId`);
 
 # 부가정보테이블
-# 댓글 테이블 추가
 CREATE TABLE attr (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,

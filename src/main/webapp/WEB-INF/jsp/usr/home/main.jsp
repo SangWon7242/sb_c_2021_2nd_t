@@ -19,7 +19,7 @@
               <a href="/">초급개발자로 전직중</a>
             </div>
             <div class="text-base mt-2 lg:text-xl">백엔드 개발자입니다. 풀스텍을 목표로 공부중입니다.</div>
-            <div class="mt-2" style="border-bottom: 2px solid black;"></div>
+            <div class="mt-2 border-b-2"></div>
             <div class="gap-12 Links mt-1 flex flex-row justify-center lg:gap-4">
               <a href="https://github.com/SangWon7242" class="text-2xl hover:text-gray-300 hover:text-gray-300">
                 <span class="text-xl">

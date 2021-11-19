@@ -178,23 +178,20 @@ ${article.body}
 <!-- 댓글 작성 폼 구현 -->
 <section class="mt-5">
   <div class="container mx-auto px-3">
-    <div class="font-bold text-xl ml-4">의견 쓰기</div>
+    <div>${replies.size()}개의댓글</div>
     <c:if test="${rq.logined}">
       <form class="table-box-type-1" method="POST" action="../reply/doWrite"
         onsubmit="ReplyWrite__submitForm(this); return false;">
         <input type="hidden" name="relTypeCode" value="article" />
         <input type="hidden" name="relId" value="${article.id}" />
         <div class="border-0">
-          <div class="px-4 py-2 flex flex-col ">
-            <div class="name_box">
-              <span>${rq.loginedMember.nickname}</span>
-            </div>
+          <div class="py-2 flex flex-col ">
             <div class="mt-1">
-              <textarea class="w-full textarea textarea-bordered" name="body" rows="5" placeholder="내용"></textarea>
+              <textarea class="w-full textarea textarea-bordered" name="body" rows="5" placeholder="댓글을 작성하세요."></textarea>
             </div>
             <div class="flex flex-row">
               <div class="flex-grow"></div>
-              <button type="submit" class="btn btn-primary">의견쓰기</button>
+              <button type="submit" class="btn btn-primary">댓글 작성</button>
             </div>
           </div>
         </div>
@@ -217,54 +214,34 @@ ${article.body}
 
 <!-- 댓글 리스트 구현 -->
 <section class="mt-5">
-  <div class="container mx-auto px-3">
-    <h1>댓글 리스트(${replies.size()})</h1>
-
-    <table class="table table-fixed w-full">
-      <colgroup>
-        <col width="50" />
-        <col width="100" />
-        <col width="100" />
-        <col width="50" />
-        <col width="100" />
-        <col width="150" />
-        <col />
-      </colgroup>
-      <thead>
-        <tr>
-          <th>번호</th>
-          <th>작성날짜</th>
-          <th>수정날짜</th>
-          <th>추천</th>
-          <th>작성자</th>
-          <th>비고</th>
-          <th>내용</th>
-        </tr>
-      </thead>
-      <tbody>
-        <c:forEach var="reply" items="${replies}">
-          <tr class="align-top">
-            <th>${reply.id}</th>
-            <td>${reply.forPrintType1RegDate}</td>
-            <td>${reply.forPrintType1UpdateDate}</td>
-            <td>${reply.goodReactionPoint}</td>
-            <td>${reply.extra__writerName}</td>
-            <td>
-              <c:if test="${reply.extra__actorCanModify}">
-                <a class="btn btn-link" href="../reply/modify?id=${reply.id}">수정</a>
-              </c:if>
-              <c:if test="${reply.extra__actorCanDelete}">
-                <a class="btn btn-link" onclick="if (confirm('정말 삭제하시겠습니까?') == flase) return false;"
-                  href="../reply/doDelete?id=${reply.id}">삭제</a>
-              </c:if>
-            </td>
-            <td>${reply.forPrintBody}</td>
-          </tr>
-        </c:forEach>
-      </tbody>
-    </table>
+  <div class="reply-form flex flex-col mx-auto px-6">
+    <c:forEach var="reply" items="${replies}">
+      <div class="reply-info mt-2">
+        <div class="profill flex gap-3">
+          <div class="text-4xl mt-1">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="comment-info">
+            <div class="username font-bold text-lg">${reply.extra__writerName}</div>
+            <div class="regDate text-lg">${reply.forPrintType1RegDate}</div>
+            <div class="updateDate text-lg hidden">${reply.forPrintType1RegDate}</div>
+          </div>
+          <div class="btns font-bold mt-1 flex gap-3">
+            <c:if test="${reply.extra__actorCanModify}">
+              <a class="hover:underline" href="../reply/modify?id=${reply.id}">수정</a>
+            </c:if>
+            <c:if test="${reply.extra__actorCanDelete}">
+              <a class="hover:underline" onclick="if (confirm('정말 삭제하시겠습니까?') == flase) return false;"
+                href="../reply/doDelete?id=${reply.id}">삭제</a>
+            </c:if>
+          </div>
+        </div>
+      </div>
+      <div class="reply-body py-3 text-xl">${reply.forPrintBody}</div>
+      <div class="py-1 border-b-2 border-gray-300"></div>
+    </c:forEach>
   </div>
 </section>
-
+<!-- 댓글 리스트 구현 끝 -->
 
 <%@ include file="../common/foot.jspf"%>
