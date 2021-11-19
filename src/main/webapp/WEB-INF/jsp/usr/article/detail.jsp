@@ -218,10 +218,10 @@ ${article.body}
     <c:forEach var="reply" items="${replies}">
       <div class="reply-info mt-2">
         <div class="profill flex gap-3">
-          <div class="text-4xl mt-1">
+          <div class="text-6xl">
             <i class="fas fa-user-circle"></i>
           </div>
-          <div class="comment-info">
+          <div class="comment-info mt-1">
             <div class="username font-bold text-lg">${reply.extra__writerName}</div>
             <div class="regDate text-lg">${reply.forPrintType1RegDate}</div>
             <div class="updateDate text-lg hidden">${reply.forPrintType1RegDate}</div>
