@@ -150,17 +150,17 @@
               class="Linux bg-white w-32 h-32 lg:h-44 lg:w-40 rounded-xl flex flex-col items-center justify-center ml-1 lg:ml-3"
               style="box-shadow: 3px 3px 3px;">
               <span class="mt-2 flex items-center justify-center  w-20 lg:w-28">
-                <img src='https://ifh.cc/g/rAiRER.png' />
+               <img src='https://ifh.cc/g/GzOyNY.png' />
               </span>
-              <span class="font-bold text-base lg:text-2xl">Linux</span>
+              <span class="font-bold text-base lg:text-2xl">Git</span>
             </div>
             <div
               class="Ubuntu bg-white w-32 h-32 lg:h-44 lg:w-40 rounded-xl flex flex-col items-center justify-center ml-1 lg:ml-3"
               style="box-shadow: 3px 3px 3px;">
               <span class="mt-2 flex items-center justify-center w-20 lg:w-24">
-                <img src='https://ifh.cc/g/FeQqRj.png' />
+                <img src='https://ifh.cc/g/xniAIu.png' />
               </span>
-              <span class="mt-3 font-bold text-base lg:text-2xl">Ubuntu</span>
+              <span class="mt-3 font-bold text-base lg:text-2xl">VSC</span>
             </div>
             <div
               class="Maven bg-white w-32 h-32 lg:h-44 lg:w-40 rounded-xl flex flex-col items-center justify-center ml-1 lg:ml-3"
