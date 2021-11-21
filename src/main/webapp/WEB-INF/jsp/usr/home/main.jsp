@@ -51,9 +51,8 @@
   <div class="flex flex-row">
     <div class="flex-glow w-screen h-auto">
       <div class="flex flex-col items-center mt-5 h-auto bg-gray-100">
-        <div class="mt-4 lg:mt-10">
-          <div class="font-bold text-xl lg:text-3xl">Skills</div>
-          <div class="flex mt-1 lg:mt-2 h-1 w-11 lg:w-16 bg-black"></div>
+        <div class="mt-4 lg:mt-7 border-b-4">
+          <div class="font-bold py-2 text-xl lg:text-3xl">Skills</div>
         </div>
         <div class="Backend-Skills mx-3 mt-4 lg:mt-10">
           <div class="font-bold text-xl text-center border-b-2">Backend</div>
@@ -150,7 +149,7 @@
               class="Linux bg-white w-32 h-32 lg:h-44 lg:w-40 rounded-xl flex flex-col items-center justify-center ml-1 lg:ml-3"
               style="box-shadow: 3px 3px 3px;">
               <span class="mt-2 flex items-center justify-center  w-20 lg:w-28">
-               <img src='https://ifh.cc/g/GzOyNY.png' />
+                <img src='https://ifh.cc/g/GzOyNY.png' />
               </span>
               <span class="font-bold text-base lg:text-2xl">Git</span>
             </div>
@@ -180,10 +179,9 @@
 </section>
 
 <section class="section section-3 flex justify-center">
-  <div class="ProJects w-auto h-auto mx-3 mt-4">
-    <div class="mt-5 flex flex-col items-center">
-      <div class="font-bold text-xl lg:text-3xl">ProJects</div>
-      <div class="flex mt-1 lg:mt-2 h-1 w-11 lg:w-16 bg-black"></div>
+  <div class="ProJects mx-1 mt-2 flex flex-col items-center gap-3">
+    <div class="mt-2 lg:mt-4 flex justify-center border-b-4">
+      <div class="font-bold py-2 text-xl lg:text-3xl">ProJects</div>
     </div>
     <div
       class="Projects-list mt-1 lg:mt-2 flex flex-wrap justify-center items-center lg:flex lg:flex-row gap-3 lg:gap-7">
