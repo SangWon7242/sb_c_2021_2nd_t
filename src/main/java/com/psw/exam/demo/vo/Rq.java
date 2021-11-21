@@ -51,6 +51,11 @@ public class Rq {
 
 		this.req.setAttribute("rq", this);
 	}
+	
+	public void printReplaceJs(String msg, String url) {
+		resp.setContentType("text/html; charset=UTF-8");
+		print(Ut.jsReplace(msg, url));
+	}
 
 	public void printHistoryBackJs(String msg) {
 		resp.setContentType("text/html; charset=UTF-8");
@@ -117,4 +122,5 @@ public class Rq {
 	public void initOnBeforeActionInterceptor() {
 
 	}
+
 }

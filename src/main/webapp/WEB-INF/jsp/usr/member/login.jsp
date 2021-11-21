@@ -44,7 +44,7 @@
   <form id="whoobe-t7qyk"
     class="justify-center items-center w-full shadow rounded-lg bg-white px-6 flex flex-col md:w-1/2 lg:w-1/3 m-auto"
     method="POST" action="../member/doLogin" onsubmit="MemberLogin__submitForm(this); return false;">
-    <input type="hidden" name="redirectUri" value="${param.afterLoginUri}" />
+    <input type="hidden" name="afterLoginUri" value="${param.afterLoginUrl}" />
     <input type="hidden" name="loginPw" />
 
     <h2 class="font-bold text-2xl my-4">Login</h2>
