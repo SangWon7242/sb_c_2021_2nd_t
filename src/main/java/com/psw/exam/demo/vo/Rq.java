@@ -122,6 +122,21 @@ public class Rq {
 		return "../member/login?afterLoginUri=" + getAfterLoginUri();
 	}
 	
+	public String getLogoutUri() {
+		String requestUri = req.getRequestURI();
+
+		// 필요하다면 활성화
+		/*
+		switch (requestUri) {
+		case "/usr/article/write":
+			return "";
+		}
+		*/
+
+		return "../member/doLogout?afterLogoutUri=" + getAfterLogoutUri();
+	}
+	
+
 	// 새로운 Uri를 만드는 것이 아니라 기존에 생성된 파라미터Uri를 리턴함
 	// paramMap에서 afterLoginUri 속성을 String으로 변환해서 가져와라
 	// 다만 없을 경우 default 값이 반환
@@ -136,6 +151,10 @@ public class Rq {
 			return Ut.getUriEncoded(Ut.getStrAttr(paramMap, "afterLoginUri", ""));
 		}
 
+		return getEncodedCurrentUri();
+	}
+	
+	private String getAfterLogoutUri() {
 		return getEncodedCurrentUri();
 	}
 

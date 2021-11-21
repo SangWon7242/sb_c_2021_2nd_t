@@ -87,7 +87,6 @@ public class UsrMemberController {
 	@ResponseBody
 	public String doLogin(String loginId, String loginPw, @RequestParam(defaultValue = "/") String afterLoginUri) {
 
-
 		if (Ut.empty(loginId)) {
 			return rq.jsHistoryBack("loginId(을)를 입력해주세요.");
 		}
@@ -132,10 +131,10 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
-	public String doLogout() {
+	public String doLogout(@RequestParam(defaultValue = "/") String afterLogoutUri) {
 		rq.logout();
 
-		return rq.jsReplace("로그아웃 되었습니다.", "/usr/home/main");
+		return rq.jsReplace("로그아웃 되었습니다.", afterLogoutUri);
 
 	}
 
