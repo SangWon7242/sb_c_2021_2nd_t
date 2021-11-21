@@ -11,19 +11,16 @@ import com.psw.exam.demo.vo.Rq;
 @Component
 public class NeedLoginInterceptor implements HandlerInterceptor {
 	private Rq rq;
-	
+
 	public NeedLoginInterceptor(Rq rq) {
 		this.rq = rq;
 	}
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-		resp.setCharacterEncoding("utf-8");
-		resp.setContentType("text/html; charset=UTF-8");
-		
-		if(!rq.isLogined()) {			
-			String afterLoginUri = rq.getEncodedCurrentUri();
-			rq.printReplaceJs("로그인 후 이용해 주세요.", "../member/login?afterLoginUrl=" + afterLoginUri);
+		if (!rq.isLogined()) {
+			String afterLoginUri = rq.getAfterLoginUri();
+			rq.printReplaceJs("로그인 후 이용해 주세요.", "../member/login?afterLoginUri=" + afterLoginUri);
 			return false;
 		}
 

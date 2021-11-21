@@ -202,7 +202,7 @@ ${article.body}
         <div class="reply_inbox flex py-3 ml-4">
           <label for="reply_textarea">
             댓글을 작성하려면&nbsp;
-            <a class="link link-primary" href="/usr/member/login">로그인</a>
+            <a class="link link-primary" href="${rq.loginUri}">로그인</a>
             &nbsp; 해주세요.
           </label>
         </div>

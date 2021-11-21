@@ -113,7 +113,14 @@ public class Rq {
 	public String getEncodedCurrentUri() {
 		return Ut.getUriEncoded(getCurrentUri());
 	}
-
+	
+	public String getLoginUri() {
+		return "../member/login?afterLoginUri=" + getAfterLoginUri();
+	}
+	
+	public String getAfterLoginUri() {
+		return getEncodedCurrentUri();
+	}
 	
 
 	// 이 메서드는 Rq 객체가 자연스럽게 생성되도록 유도하는 역할을 한다.
