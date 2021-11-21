@@ -104,7 +104,7 @@
           <span>자유 게시판</span>
         </a>
         <c:if test="${!rq.logined}">
-          <a href="/usr/member/login"
+          <a href="${rq.loginUri}"
             class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white">
             <span>로그인</span>
           </a>
@@ -116,7 +116,7 @@
           </a>
         </c:if>
         <c:if test="${rq.logined}">
-          <a href="${rq.loginUri}"
+          <a href="/usr/member/myPage"
             class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white">
             <span>마이페이지</span>
           </a>

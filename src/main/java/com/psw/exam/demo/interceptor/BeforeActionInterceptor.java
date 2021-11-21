@@ -7,7 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Component("beforeActionIntercepter")
+@Component
 public class BeforeActionInterceptor implements HandlerInterceptor {
 	private Rq rq;
 	
@@ -16,7 +16,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 	}
 	
 	@Override
-	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {	
+	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
 		req.setAttribute("rq", rq);
 
 		return HandlerInterceptor.super.preHandle(req, resp, handler);

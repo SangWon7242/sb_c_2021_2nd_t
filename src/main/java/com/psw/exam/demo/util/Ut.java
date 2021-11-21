@@ -3,6 +3,11 @@ package com.psw.exam.demo.util;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class Ut {
 
@@ -28,6 +33,22 @@ public class Ut {
 		// 좌우 공백 제거후 길이 제거 한 내용이 0일 경우
 		return str.trim().length() == 0;
 	}
+	
+	public static Map<String, String> getParamMap(HttpServletRequest request) {
+		Map<String, String> param = new HashMap<>();
+
+		Enumeration<String> parameterNames = request.getParameterNames();
+
+		while (parameterNames.hasMoreElements()) {
+			String paramName = parameterNames.nextElement();
+			String paramValue = request.getParameter(paramName);
+
+			param.put(paramName, paramValue);
+		}
+
+		return param;
+	}
+	
 
 	public static String f(String format, Object... args) {
 		return String.format(format, args);
