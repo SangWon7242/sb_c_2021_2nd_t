@@ -72,16 +72,12 @@ public class UsrReplyController {
 			return rq.historyBackJsOnView(Ut.f("%d번 댓글을 수정할 권한이 없습니다.", id));
 		}
 
-		if (Ut.empty(id)) {
-			return rq.jsHistoryBack("id(을)를 입력해주세요.");
-		}
-
 		if (Ut.empty(body)) {
 			return rq.jsHistoryBack("body(을)를 입력해주세요.");
 		}
 
 		ResultData modifyReplyRd = replyService.modifyReplyRd(id, body);
-
+		
 		if (Ut.empty(replaceUri)) {
 			switch (reply.getRelTypeCode()) {
 			case "article":
@@ -89,7 +85,7 @@ public class UsrReplyController {
 				break;
 			}
 		}
-		
+
 		return rq.jsReplace(modifyReplyRd.getMsg(), replaceUri);
 	}
 

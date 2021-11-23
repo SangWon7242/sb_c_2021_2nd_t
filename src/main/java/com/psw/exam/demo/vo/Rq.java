@@ -34,7 +34,7 @@ public class Rq {
 	public Rq(HttpServletRequest req, HttpServletResponse resp, MemberService memberService) {
 		this.req = req;
 		this.resp = resp;
-		
+
 		paramMap = Ut.getParamMap(req);
 
 		this.session = req.getSession();
@@ -52,8 +52,6 @@ public class Rq {
 		this.isLogined = isLogined;
 		this.loginedMemberId = loginedMemberId;
 		this.loginedMember = loginedMember;
-
-		this.req.setAttribute("rq", this);
 	}
 
 	public void printReplaceJs(String msg, String uri) {
@@ -157,6 +155,11 @@ public class Rq {
 	private String getAfterLogoutUri() {
 		return getEncodedCurrentUri();
 	}
+	
+	public String getArticleDetailUriFromArticleList(Article article) {
+		return "../article/detail?id=" + article.getId() + "&listUri" + getEncodedCurrentUri();
+	}
+	
 
 	// 이 메서드는 Rq 객체가 자연스럽게 생성되도록 유도하는 역할을 한다.
 	// 지우면 안되고,

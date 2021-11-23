@@ -35,7 +35,6 @@ public class ReplyService {
 		return replies;
 	}
 
-
 	private void updateForPrintData(Member actor, Reply reply) {
 		if (reply == null) {
 			return;
@@ -61,7 +60,7 @@ public class ReplyService {
 	}
 
 	private ResultData actorCanDelete(Member actor, Reply reply) {
-		if (reply == null) {
+		if (actor == null) {
 			return ResultData.from("F-1", "댓글이 존재하지 않습니다.");
 		}
 		
