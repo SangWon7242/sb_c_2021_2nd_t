@@ -219,32 +219,34 @@ ${article.body}
 
 <!-- 댓글 리스트 구현 -->
 <section class="mt-5">
-  <div class="reply-form flex flex-col mx-auto px-6">
-    <c:forEach var="reply" items="${replies}">
-      <div class="reply-info mt-2">
-        <div class="profill flex gap-3">
-          <div class="text-6xl">
-            <i class="fas fa-user-circle"></i>
-          </div>
-          <div class="comment-info mt-1">
-            <div class="username font-bold text-lg">${reply.extra__writerName}</div>
-            <div class="regDate text-lg">${reply.forPrintType1RegDate}</div>
-            <div class="updateDate text-lg hidden">${reply.forPrintType1RegDate}</div>
-          </div>
-          <div class="btns font-bold mt-1 flex gap-3">
-            <c:if test="${reply.extra__actorCanModify}">
-              <a class="hover:underline" href="../reply/modify?id=${reply.id}">수정</a>
-            </c:if>
-            <c:if test="${reply.extra__actorCanDelete}">
-              <a class="hover:underline" onclick="if (confirm('정말 삭제하시겠습니까?') == flase) return false;"
-                href="../reply/doDelete?id=${reply.id}">삭제</a>
-            </c:if>
+  <div class="container mx-auto px-3">
+    <div class="reply-form flex flex-col mx-auto px-6">
+      <c:forEach var="reply" items="${replies}">
+        <div class="reply-info mt-2">
+          <div class="profill flex gap-3">
+            <div class="text-6xl">
+              <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="comment-info mt-1">
+              <div class="username font-bold text-lg">${reply.extra__writerName}</div>
+              <div class="regDate text-lg">${reply.forPrintType1RegDate}</div>
+              <div class="updateDate text-lg hidden">${reply.forPrintType1RegDate}</div>
+            </div>
+            <div class="btns font-bold mt-1 flex gap-3">
+              <c:if test="${reply.extra__actorCanModify}">
+                <a class="hover:underline" href="../reply/modify?id=${reply.id}">수정</a>
+              </c:if>
+              <c:if test="${reply.extra__actorCanDelete}">
+                <a class="hover:underline" onclick="if (confirm('정말 삭제하시겠습니까?') == flase) return false;"
+                  href="../reply/doDelete?id=${reply.id}">삭제</a>
+              </c:if>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="reply-body py-3 text-xl">${reply.forPrintBody}</div>
-      <div class="py-1 border-b-2 border-gray-300"></div>
-    </c:forEach>
+        <div class="reply-body py-3 text-xl">${reply.forPrintBody}</div>
+        <div class="py-1 border-b-2 border-gray-300"></div>
+      </c:forEach>
+    </div>
   </div>
 </section>
 <!-- 댓글 리스트 구현 끝 -->
