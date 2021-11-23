@@ -186,6 +186,7 @@ ${article.body}
     <c:if test="${rq.logined}">
       <form class="table-box-type-1" method="POST" action="../reply/doWrite"
         onsubmit="ReplyWrite__submitForm(this); return false;">
+        <input type="hidden" name="replaceUri" value="${rq.currentUri}" />
         <input type="hidden" name="relTypeCode" value="article" />
         <input type="hidden" name="relId" value="${article.id}" />
         <div class="border-0">
