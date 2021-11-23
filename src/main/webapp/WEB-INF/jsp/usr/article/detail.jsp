@@ -234,11 +234,11 @@ ${article.body}
             </div>
             <div class="btns font-bold mt-1 flex gap-3">
               <c:if test="${reply.extra__actorCanModify}">
-                <a class="hover:underline" href="../reply/modify?id=${reply.id}">수정</a>
+                <a class="hover:underline" href="../reply/modify?id=${reply.id}&replaceUri=${rq.encodedCurrentUri">수정</a>
               </c:if>
               <c:if test="${reply.extra__actorCanDelete}">
                 <a class="hover:underline" onclick="if (confirm('정말 삭제하시겠습니까?') == flase) return false;"
-                  href="../reply/doDelete?id=${reply.id}">삭제</a>
+                  href="../reply/doDelete?id=${reply.id}&replaceUri=${rq.encodedCurrentUri">삭제</a>
               </c:if>
             </div>
           </div>
