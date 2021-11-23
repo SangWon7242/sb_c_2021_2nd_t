@@ -6,7 +6,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 
-<script>
+<script type="text/javascript">
 	let MemberJoin__submitDone = false;
 
 	function MemberJoin__submit(form) {

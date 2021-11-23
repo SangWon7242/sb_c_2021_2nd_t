@@ -87,14 +87,25 @@ public class Rq {
 	public void logout() {
 		session.removeAttribute("loginedMemberId");
 	}
-
+	
 	public String historyBackJsOnView(String msg) {
 		req.setAttribute("msg", msg);
 		req.setAttribute("historyBack", true);
 		return "common/js";
 	}
 
+	public String historyBackJsOnView(String resultCode, String msg) {
+		req.setAttribute("msg", String.format("[%s] %s", resultCode, msg));
+		req.setAttribute("historyBack", true);
+		return "common/js";
+	}
+	
 	public String jsHistoryBack(String msg) {
+		return Ut.jsHistoryBack(msg);
+	}
+
+	public String jsHistoryBack(String resultCode, String msg) {
+		msg = String.format("[%s] %s", resultCode, msg);
 		return Ut.jsHistoryBack(msg);
 	}
 
@@ -134,7 +145,10 @@ public class Rq {
 		return "../member/doLogout?afterLogoutUri=" + getAfterLogoutUri();
 	}
 	
-
+	public String getJoinUri() {
+		return "../member/join?afterLoginUri=" + getAfterLoginUri();
+	}
+	
 	// 새로운 Uri를 만드는 것이 아니라 기존에 생성된 파라미터Uri를 리턴함
 	// paramMap에서 afterLoginUri 속성을 String으로 변환해서 가져와라
 	// 다만 없을 경우 default 값이 반환

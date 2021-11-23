@@ -31,7 +31,7 @@ public class UsrMemberController {
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
 	public String doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
-			String email) {
+			String email, @RequestParam(defaultValue = "/") String afterLoginUri) {
 
 		Member oldmember = memberService.getMemberByLoginId(loginId);
 
@@ -72,10 +72,12 @@ public class UsrMemberController {
 				cellphoneNo);
 
 		if (joinRd.isFail()) {
-			return rq.historyBackJsOnView(joinRd.getMsg());
+			return rq.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
 		}
-
-		return rq.jsReplace(joinRd.getMsg(), "/");
+		
+		String afterJoinUri = "../member/login?afterLoginUri=" + Ut.getUriEncoded(afterLoginUri);
+		
+		return rq.jsReplace("회원가입이 완료되었습니다. 로그인 후 이용해주세요.", afterJoinUri);
 	}
 
 	@RequestMapping("/usr/member/login")
@@ -89,7 +91,7 @@ public class UsrMemberController {
 
 		if (Ut.empty(loginId)) {
 			return rq.jsHistoryBack("loginId(을)를 입력해주세요.");
-		}
+		} 
 
 		if (Ut.empty(loginPw)) {
 			return rq.jsHistoryBack("loginPw(을)를 입력해주세요.");
