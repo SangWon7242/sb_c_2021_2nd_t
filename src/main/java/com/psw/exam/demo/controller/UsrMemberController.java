@@ -27,17 +27,27 @@ public class UsrMemberController {
 	public String showJoin(HttpSession httpSession) {
 		return "usr/member/join";
 	}
+	
+	@RequestMapping("/usr/member/getLoginIdDup")
+	@ResponseBody
+	public ResultData getLoginIdDup(String loginId) {
+		if (Ut.empty(loginId)) {
+			return ResultData.from("F-A1", "loginId를 입력해주세요.");
+		}
+
+		Member oldMember = memberService.getMemberByLoginId(loginId);
+
+		if (oldMember != null) {
+			return ResultData.from("F-A2", "해당 로그인아이디는 이미 사용중입니다.", "loginId", loginId);
+		}
+
+		return ResultData.from("S-1", "사용가능한 로그인아이디 입니다.", "loginId", loginId);
+	}
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
 	public String doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email, @RequestParam(defaultValue = "/") String afterLoginUri) {
-
-		Member oldmember = memberService.getMemberByLoginId(loginId);
-
-		if (oldmember != null) {
-			return rq.jsHistoryBack("해당 아이디는 이미 사용중입니다.");
-		}
 
 		if (Ut.empty(loginId)) {
 			return rq.jsHistoryBack("loginId(을)를 입력해주세요.");
@@ -62,6 +72,8 @@ public class UsrMemberController {
 		if (Ut.empty(cellphoneNo)) {
 			return rq.jsHistoryBack("cellphoneNo(을)를 입력해주세요.");
 		}
+		
+		Member oldmember = memberService.getMemberByLoginId(loginId);
 
 		// ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name,
 		// nickname, cellphoneNo, email);

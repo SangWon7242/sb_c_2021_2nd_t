@@ -20,24 +20,24 @@
             </div>
             <div class="text-base mt-2 lg:text-xl">백엔드 개발자입니다. 풀스텍을 목표로 공부중입니다.</div>
             <div class="mt-2 border-b-2"></div>
-            <div class="gap-12 Links mt-1 flex flex-row justify-center lg:gap-4">
+            <div class="gap-10 Links mt-1 flex flex-row justify-center lg:gap-4">
               <a href="https://github.com/SangWon7242" class="text-2xl hover:text-gray-300 hover:text-gray-300">
                 <span class="text-xl">
                   <i class="fab fa-github"></i>
                 </span>
-                <span class="hidden text-base font-bold lg:text-xl lg:inline-block">GITHUB</span>
+                <span class="text-base font-bold lg:text-xl lg:inline-block">GITHUB</span>
               </a>
               <a href="https://www.youtube.com/user/gotkdqja/videos" class="ml-3 text-2xl hover:text-gray-300">
                 <span class="text-xl">
                   <i class="fab fa-youtube"></i>
                 </span>
-                <span class="hidden text-base font-bold lg:text-xl lg:inline-block">YOUTUBE</span>
+                <span class="text-base font-bold lg:text-xl lg:inline-block">YOUTUBE</span>
               </a>
               <a href="https://www.instagram.com/sang_1won/" class="ml-3 text-2xl hover:text-gray-300">
                 <span class="text-xl">
                   <i class="fab fa-instagram"></i>
                 </span>
-                <span class="hidden text-base font-bold lg:text-xl lg:inline-block">INSTAGRAM</span>
+                <span class="text-base font-bold lg:text-xl lg:inline-block">INSTAGRAM</span>
               </a>
             </div>
           </div>
