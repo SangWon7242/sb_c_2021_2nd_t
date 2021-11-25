@@ -37,13 +37,12 @@
 	})
 </script>
 
-<section class="mt-5">
+<section class="mt-5 border-b-1 border-gray-300">
   <div class="box_article_tit flex flex-col px-24">
     <!-- 글 제목 구현 -->
     <div class="txt_sub_title text-4xl font-bold">${article.title}</div>
     <div class="sub_tit_info mt-2">
-      <span class="category">
-      </span>
+      <span class="category"> </span>
       <p class="info_meta gap-4">
         <span class="name">by${article.extra__writerName}</span>
         <span class="regDate">${article.forPrintType2RegDate}</span>
@@ -183,12 +182,12 @@
 <!-- 댓글 작성 폼 구현 끝 -->
 
 <!-- 댓글 리스트 구현 -->
-<section class="mt-5">
-  <div class="container mx-auto px-3">
-    <div class="reply-form flex flex-col mx-auto px-6">
-      <c:forEach var="reply" items="${replies}">
+<section class="mt-5 bg-gray-200 h-auto">
+  <c:forEach var="reply" items="${replies}">
+    <div class="container bg-white shadow-md mx-auto px-3 mt-5 mb-3 rounded-md">
+      <div class="reply-form flex flex-col mx-auto px-6">
         <div class="reply-info mt-2">
-          <div class="profill flex gap-3">
+          <div class="profill flex gap-3 mt-3">
             <div class="text-6xl">
               <i class="fas fa-user-circle"></i>
             </div>
@@ -209,10 +208,9 @@
           </div>
         </div>
         <div class="reply-body py-3 text-xl">${reply.forPrintBody}</div>
-        <div class="py-1 border-b-2 border-gray-300"></div>
-      </c:forEach>
+      </div>
     </div>
-  </div>
+  </c:forEach>
 </section>
 <!-- 댓글 리스트 구현 끝 -->
 
