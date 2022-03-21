@@ -41,6 +41,8 @@
   <div class="flex-grow max-w-md px-2 pt-4">
     <form class="flex flex-col" method="POST" action="../member/doFindLoginId"
       onsubmit="MemberFindLoginId__submit(this); return false;">
+      <input type="hidden" name="afterLoginUri" value="${param.afterLoginUri}" />
+
       <table>
         <tbody>
           <div class="form-control">
@@ -65,7 +67,7 @@
             <a href="../member/login" class="hover:underline">로그인</a>
             <a href="../member/findLoginPw" class="hover:underline">비밀번호 찾기</a>
           </div>
-          
+
         </tbody>
       </table>
     </form>

@@ -1,5 +1,8 @@
 server:
-  port: 8021 
+  port: 8021
+jasypt:
+  encryptor:
+     bean: jasyptStringEncrptor 
 spring:
   mail:
     host: smtp.gmail.com

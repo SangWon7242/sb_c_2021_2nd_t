@@ -51,7 +51,7 @@ public class MemberService {
 
 		memberRepository.getMember(loginId, loginPw, name, nickname, cellphoneNo, email);
 		int id = memberRepository.getLastInsertId();
-
+ 
 		return ResultData.from("S-1", "회원가입이 완료되었습니다.", "id", id);
 	}
 
@@ -59,7 +59,7 @@ public class MemberService {
 		return memberRepository.getMemberById(id);
 	}
 
-	// lgoinId를 repository에 요청
+	// loginId를 repository에 요청
 	public Member getMemberByLoginId(String loginId) {
 		return memberRepository.getMemberByLoginId(loginId);
 	}

@@ -21,14 +21,14 @@ public class ResultData<DT> {
 	public static ResultData from(String resultCode, String msg) {
 		return from(resultCode, msg, null, null);
 	}
-	
+
 	public static <DT> ResultData<DT> from(String resultCode, String msg, String data1Name, DT data1) {
 		ResultData<DT> rd = new ResultData<DT>();
 		rd.resultCode = resultCode;
 		rd.msg = msg;
 		rd.data1Name = data1Name;
 		rd.data1 = data1;
-		
+
 		return rd;
 	}
 	

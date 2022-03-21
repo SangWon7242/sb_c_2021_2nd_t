@@ -136,7 +136,7 @@ function codepenPlugin() {
 
   return { toHTMLRenderers }
 }
-// 유튜브 플러그인 끝
+// 토스트 UI 관련 자바스크립트 끝
 
 // repl 플러그인 시작
 function replPlugin() {

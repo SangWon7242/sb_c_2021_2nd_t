@@ -75,10 +75,6 @@ public class UsrMemberController {
 		
 		Member oldmember = memberService.getMemberByLoginId(loginId);
 
-		// ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name,
-		// nickname, cellphoneNo, email);
-		// 성공하면 1 이상의 숫자, 실패하면 -1이 리턴
-
 		// Member member = memberService.getMemberById((int)joinRd.getData1());
 		ResultData joinRd = memberService.join(rq.getLoginedMemberId(), loginId, loginPw, name, nickname, email,
 				cellphoneNo);
@@ -264,7 +260,7 @@ public class UsrMemberController {
 			return rq.jsHistoryBack("일치하는 회원이 존재하지 않습니다.");
 		}
 
-		return rq.jsReplace(Ut.f("회원님의 아이디는 `%s` 입니다.", member.getLoginId()), "/usr/home/main");
+		return rq.jsReplace(Ut.f("회원님의 아이디는 `%s` 입니다.", member.getLoginId()), "/usr/member/login");
 	}
 
 	@RequestMapping("/usr/member/findLoginPw")
@@ -300,7 +296,7 @@ public class UsrMemberController {
 			return rq.historyBackJsOnView(notifyTempLoginPwByEmailRd.getMsg());
 		}
 
-		return rq.jsReplace(notifyTempLoginPwByEmailRd.getMsg(), "/");
+		return rq.jsReplace(notifyTempLoginPwByEmailRd.getMsg(), "/usr/member/login");
 	}
 
 }
